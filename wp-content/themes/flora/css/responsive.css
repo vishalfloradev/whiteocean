@@ -331,6 +331,31 @@ a.navbar-brand {
 	
 }
 @media screen and (min-width: 320px) and (max-width: 768px) {
+	.wrapper.inner-page.career {
+    text-align: center;
+}
+	section.pt-md-11.about-bg-sec2.pg-top-50.pg-bottom-50.sec-4.car-sec-3 {
+    text-align: center;
+}
+	section.pg-top-60.pt-md-11.sec-4.about-bg-sec2.car-sec-1 {
+    padding-top: 0 !important;
+}
+	section.pt-md-11.bg-vt-sec3.pg-top-100.pg-bottom-100.mg-top-50.sec-4.car-sec-2 {
+    margin-top: 0 !important;
+}
+	.bs-example.accordion-wo .card-body {
+    padding: 0;
+}
+	.bs-example.accordion-wo.m-auto {
+    text-align: left;
+}
+	section.pg-top-20.pt-md-11.about-bg-sec2.solu-1, section.pt-md-11.bg-vt-sec3.pg-top-100.pg-bottom-100.mg-top-50.mg-bottom-50.solu-2, section.pg-top-0.pt-md-11.about-bg-sec2.solu-3, section.pt-md-11.bg-vt-sec3.pg-top-100.pg-bottom-100.mg-top-50.mg-bottom-50.solu-4, section.pg-top-0.mg-bottom-50.pt-md-11.sec-4.about-bg-sec2.solu-5 {
+    text-align: center;
+}
+	section.pg-top-20.pt-md-11.about-bg-sec2.solu-1 img, section.pg-top-0.pt-md-11.about-bg-sec2.solu-3 img {
+    margin-top: 15px;
+}
+	section.pt-md-11.bg-vt-sec3.pg-top-100.pg-bottom-100.mg-top-50.mg-bottom-50.solu-2 img, section.pt-md-11.bg-vt-sec3.pg-top-100.pg-bottom-100.mg-top-50.mg-bottom-50.solu-4 img{margin-bottom: 15px;}
 .text-left.mo-center {
     text-align: center !important;
 }

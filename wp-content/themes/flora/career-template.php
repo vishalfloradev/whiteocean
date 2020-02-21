@@ -16,6 +16,110 @@ get_header();
     <li class="breadcrumb-item active"><?php echo get_the_title();?></li>
   </ol>
 </div>
+<?php
+$career_top_content = get_field('career_top_content');
+$main_title=$career_top_content['title'];
+$main_sub_title=$career_top_content['sub_title'];
+$main_content=$career_top_content['content'];
+$main_image=$career_top_content['image'];
+ ?>
+<section class="pg-top-60 pt-md-11 sec-4 about-bg-sec2 car-sec-1">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 col-lg-6 aos-init aos-animate" data-aos="fade-up"><span class="font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase"><?php echo $main_sub_title; ?></span>
+        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5"><?php echo $main_title; ?></h2>
+        <div class="bl-clo text-md-left mb-6 mb-lg-8 bl-clo font-18 font-wei-300 line-height-30"> <?php echo $main_content; ?> </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6">
+        <?php $image = wp_get_attachment_image_src( $main_image, 'full' ); ?>
+        <?php $alt_text = get_post_meta($main_image , '_wp_attachment_image_alt', true); ?>
+        <img src="<?php echo $image[0]; ?>" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 aos-init aos-animate" alt="<?php echo $alt_text; ?>" data-aos="fade-up" data-aos-delay="100"></div>
+    </div>
+  </div>
+</section>
+  <?php if( have_rows('career_post') ): ?>
+          <?php $i=0; while( have_rows('career_post') ): the_row();
+          
+      if($i%2 == 0)
+       {
+         ?>
+       <section class="pt-md-11 bg-vt-sec3 pg-top-100 pg-bottom-100 mg-top-50 sec-4 car-sec-2">
+  <div class="container">
+    <div class="row align-items-center">
+         <?php
+       }
+
+       else
+       {
+        ?>
+        <section class="pt-md-11 about-bg-sec2 pg-top-50 pg-bottom-50 sec-4 car-sec-3"> <div class="container"> <div class="row align-items-center"> 
+        <?php
+       }
+?>   
+                
+      <div class="col-12 col-md-6 col-lg-6 aos-init aos-animate fix-top-wo" data-aos="fade-up"><span class="font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase">careers</span>
+        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5"> <?php the_sub_field('name') ?></h2>
+        <p class="text-md-left mb-6 mb-lg-8 blue-light-clo font-18 font-wei-300 line-height-30">Posted on : <?php the_sub_field('date') ?></p>
+        <div class="text-center text-md-left">
+          <label class="btn-bs-file btn wo-btn">Submit Resume
+            <input type="file">
+          </label>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 aos-init aos-animate" data-aos="fade-up">
+        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5">Overview</h2>
+        <div class="bl-clo text-md-left mb-6 mb-lg-8 bl-clo font-18 font-wei-300 line-height-30">
+        <?php the_sub_field('content') ?>
+        </div>
+        <div class="bs-example accordion-wo m-auto">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"><i class="fa fa-plus"></i> Responsibilities</button>
+                </h2>
+              </div>
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
+                <div class="card-body">
+                <?php the_sub_field('responsibilities') ?>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"><i class="fa fa-plus"></i> Qualifications</button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample" style="">
+                <div class="card-body">
+                 <?php the_sub_field('qualifications') ?>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"><i class="fa fa-minus"></i> Requirement</button>
+                </h2>
+              </div>
+              <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample" style="">
+                <div class="card-body">
+        <?php the_sub_field('requirement') ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <?php $i++; endwhile; 
+				  wp_reset_postdata();
+				   endif; ?> 
+
 <section class="pt-md-11 sec-4 about-bg-sec2">
   <div class="container">
   <div class="row align-items-center">
@@ -72,5 +176,7 @@ get_header();
 </section>
 <?php
 get_footer();
+
+
 
 
