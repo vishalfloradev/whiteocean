@@ -10,18 +10,21 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FlowFlowWPWidget extends \WP_Widget{
 	private $context;
 
-	public function __construct($context) {
-		$this->context = $context;
+	public function __construct() {
 		parent::__construct( 'ff_widget', 'Flow-Flow Widget',
 			array( 'description' => 'Place your social stream' ) // Args
 		);
 	}
 
+	public function setContext($context){
+		$this->context = $context;
+	}
+	
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
 		if ( ! empty( $instance['title'] ) ) {

@@ -11,12 +11,12 @@ use flow\db\FFDB;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2017 Looks Awesome
+ * @copyright Looks Awesome
  */
 abstract class LADBMigrationBase implements ILADBMigration{
 	
 	public function version() {
-		return LADBMigrationManager::INIT_MIGRAION;
+		return LADBMigrationManager::INIT_MIGRATION;
 	}
 	
 	public function execute($conn, $manager){
@@ -69,6 +69,7 @@ abstract class LADBMigrationBase implements ILADBMigration{
 				`system_enabled` TINYINT(1) DEFAULT 1,
 				`changed_time` INT DEFAULT 0,
 				`cache_lifetime` INT DEFAULT 60,
+				`send_email` TINYINT(1) DEFAULT 0,
 				PRIMARY KEY (`feed_id`)
 			) ?p";
 			$conn->query($sql, $table_name, $this->charset());
@@ -90,6 +91,7 @@ abstract class LADBMigrationBase implements ILADBMigration{
 	protected function create_posts_table($conn, $table_name){
 		if(!FFDB::existTable($table_name)) {
 			$charset = $this->charset();
+			$collate = $this->collate();
 			$sql = "CREATE TABLE ?n
 			(
 				`feed_id` VARCHAR(20) NOT NULL,
@@ -97,9 +99,9 @@ abstract class LADBMigrationBase implements ILADBMigration{
 				`post_type` VARCHAR(10) NOT NULL,
 				`post_text` BLOB,
 				`post_permalink` VARCHAR(300),
-				`post_header` VARCHAR(200),
-				`user_nickname` VARCHAR(100),
-				`user_screenname` VARCHAR(200),
+				`post_header` VARCHAR(200){$collate},
+				`user_nickname` VARCHAR(100){$collate},
+				`user_screenname` VARCHAR(200){$collate},
 				`user_pic` VARCHAR(300) NOT NULL,
 				`user_link` VARCHAR(300),
 				`rand_order` REAL,

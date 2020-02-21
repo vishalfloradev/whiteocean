@@ -1,13 +1,15 @@
 <?php namespace flow;
 
-use flow\cache\LAFacebookCacheManager;
+use flow\social\cache\LAFacebookCacheManager;
 use flow\tabs\FFAddonsTab;
 use flow\tabs\FFBackupTab;
+use flow\tabs\FFModerationTab;
 use flow\tabs\FFSourcesTab;
 use flow\tabs\FFStreamsTab;
 use flow\tabs\FFSuggestionsTab;
 use flow\db\FFDBMigrationManager;
 use la\core\tabs\LAGeneralTab;
+use la\core\tabs\LALicenseTab;
 use la\core\tabs\LAAuthTab;
 
 if ( ! defined( 'WPINC' ) ) die;
@@ -23,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @package   FlowFlowAdmin
  * @author    Looks Awesome <email@looks-awesome.com>
  * @link      http://looks-awesome.com
- * @copyright 2014-2017 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FlowFlowAdmin extends LAAdminBase{
 	/**
@@ -35,6 +37,7 @@ class FlowFlowAdmin extends LAAdminBase{
 		
 		/** @var LAFacebookCacheManager $facebookCache */
 		$facebookCache = $context['facebook_cache'];
+		$activated = $this->db->registrationCheck();
 		
 		$context['admin_page_title'] = esc_html( get_admin_page_title() );
 		$context['options'] = FlowFlow::get_instance($context)->get_options();
@@ -50,17 +53,20 @@ class FlowFlowAdmin extends LAAdminBase{
 		$context['tabs'][] = new FFStreamsTab();
 		$context['tabs'][] = new FFSourcesTab();
 		
+		$context['tabs'][] = new FFModerationTab();
 		$context['tabs'][] = new LAGeneralTab($tab_prefix);
 		$context['tabs'][] = new LAAuthTab($tab_prefix);
 		$context['tabs'][] = new FFBackupTab();
 		if (FF_USE_WP){
+			$context['tabs'][] = new LALicenseTab($tab_prefix, $activated);
 			$context['tabs'][] = new FFAddonsTab();
 			$context['tabs'][] = new FFSuggestionsTab();
 		}
 		
 		$context['buttons-after-tabs'] = '<li id="request-tab"><span>Save changes</span> <i class="flaticon-paperplane"></i></li>';
 		$context = apply_filters('ff_change_context', $context);
-		
+
+		/** @noinspection PhpIncludeInspection */
 		include_once($context['root']  . 'views/admin.php');
 	}
 	
@@ -76,7 +82,6 @@ class FlowFlowAdmin extends LAAdminBase{
 	
 	protected function enqueueAdminScriptsAlways($plugin_directory){
 		wp_enqueue_script($this->getPluginSlug() . '-global-admin-script', $plugin_directory . 'js/global_admin.js', array('jquery', 'backbone', 'underscore'), $this->context['version']);
-
 	}
 	
 	protected function enqueueAdminStylesOnlyAtPluginPage($plugin_directory){
@@ -99,6 +104,7 @@ class FlowFlowAdmin extends LAAdminBase{
 		wp_localize_script($this->getPluginSlug() . '-admin-script', 'WP_FF_admin', array());
 		wp_localize_script($this->getPluginSlug() . '-admin-script', 'isWordpress', (string)FF_USE_WP);
 		wp_localize_script($this->getPluginSlug() . '-admin-script', '_ajaxurl', (string)$this->context['ajax_url']);
+		wp_localize_script($this->getPluginSlug() . '-admin-script', '_nonce', wp_create_nonce('flow_flow_nonce'));
 		wp_enqueue_script($this->getPluginSlug() . '-zeroclipboard', $plugin_directory . 'js/zeroclipboard/ZeroClipboard.min.js', array('jquery'), $this->context['version']);
 		wp_enqueue_script($this->getPluginSlug() . '-tinycolor', $plugin_directory . 'js/tinycolor.js', array('jquery'), $this->context['version']);
 		wp_enqueue_script($this->getPluginSlug() . '-colorpickersliders', $plugin_directory . 'js/jquery.colorpickersliders.js', array('jquery'), $this->context['version']);
@@ -111,17 +117,11 @@ class FlowFlowAdmin extends LAAdminBase{
 	protected function addPluginAdminSubMenu($displayAdminPageFunction){
 		add_submenu_page(
 			'flow-flow',
-			'Flow-Flow Lite',
-			'Flow-Flow Lite',
+			'Flow-Flow',
+			'Flow-Flow',
 			'manage_options',
 			$this->getPluginSlug() . '-admin',
 			$displayAdminPageFunction
 		);
-	}
-	
-	protected function addActionLinks(){
-		$links = parent::addActionLinks();
-		$links['upgrade'] = '<a class="ff-upgrade-link" target="_blank" href="http://goo.gl/g7XQzu">' . 'Upgrade to PRO' . '</a>';
-		return $links;
 	}
 }

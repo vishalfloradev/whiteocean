@@ -1,5 +1,6 @@
 <?php namespace flow\cache;
 use flow\settings\FFSettingsUtils;
+use flow\social\cache\LAFacebookCacheManager;
 
 if ( ! defined( 'WPINC' ) ) die;
 
@@ -10,9 +11,9 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
-class FFFacebookCacheAdapter implements LAFacebookCacheManager{
+class FFFacebookCacheAdapter implements LAFacebookCacheManager {
 	private $context;
 	
 	public function __construct(){
@@ -52,5 +53,25 @@ class FFFacebookCacheAdapter implements LAFacebookCacheManager{
 			$this->manager = $fb_use_own ? new FFFacebookCacheManager($this->context) : new FFFacebookCacheManager2($this->context);
 		}
 		return $this->manager;
+	}
+
+	public function startCounter() {
+		$this->get()->startCounter();
+	}
+
+	public function stopCounter() {
+		$this->get()->stopCounter();
+	}
+
+	public function hasLimit() {
+		return $this->get()->hasLimit();
+	}
+
+	public function addRequest() {
+		$this->get()->addRequest();
+	}
+
+	public function getIdPosts( $feedId ) {
+		return $this->get()->getIdPosts($feedId);
 	}
 }

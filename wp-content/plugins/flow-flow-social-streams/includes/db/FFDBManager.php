@@ -1,7 +1,6 @@
 <?php namespace flow\db;
-use flow\cache\LAFacebookCacheManager;
-use flow\FlowFlow;
 use flow\settings\FFSettingsUtils;
+use flow\social\cache\LAFacebookCacheManager;
 
 if ( ! defined( 'WPINC' ) ) die;
 
@@ -12,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FFDBManager extends LADBManager{
 	private $facebook_changed;
@@ -48,7 +47,7 @@ class FFDBManager extends LADBManager{
 		return $settings;
 	}
 
-	protected function customizeResponce(&$responce){
+	protected function customizeResponse(&$response){
 		/** @var LAFacebookCacheManager $facebookCache */
 		$facebookCache = $this->context['facebook_cache'];
 		if ($this->facebook_changed) {
@@ -57,7 +56,7 @@ class FFDBManager extends LADBManager{
 		$extendedToken = $facebookCache->getAccessToken();
 		FFDB::commit();
 		
-		$responce['fb_extended_token'] = $extendedToken;
+		$response['fb_extended_token'] = $extendedToken;
 	}
 
 	protected function clean_cache($options) {

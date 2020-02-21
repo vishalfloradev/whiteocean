@@ -1,182 +1,184 @@
-# Copyright (C) 2017 Looks Awesome
-# This file is distributed under the same license as the Flow-Flow Lite package.
+# Copyright (C) 2019 Looks Awesome
+# This file is distributed under the same license as the Flow-Flow package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flow-Flow Lite 3.0.0\n"
+"Project-Id-Version: Flow-Flow 4.1.18\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/flow-flow\n"
-"POT-Creation-Date: 2017-10-22 07:58:45+00:00\n"
+"POT-Creation-Date: 2019-07-24 13:30:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Team Name <team@example.com>\n"
 "X-Generator: grunt-wp-i18n 0.4.9\n"
 
-#: includes/FlowFlow.php:65
-msgid "All"
-msgstr ""
-
-#: includes/FlowFlow.php:66
-msgid "Search"
-msgstr ""
-
-#: includes/FlowFlow.php:67
-msgid "Expand"
-msgstr ""
-
-#: includes/FlowFlow.php:68
-msgid "Collapse"
-msgstr ""
-
-#: includes/FlowFlow.php:69
-msgid "Posted on"
-msgstr ""
-
-#: includes/FlowFlow.php:70
-msgid "Show more"
-msgstr ""
-
-#: includes/FlowFlow.php:73
-msgid "Yesterday"
-msgstr ""
-
-#: includes/FlowFlow.php:74
-msgid "s"
-msgstr ""
-
-#: includes/FlowFlow.php:75
-msgid "m"
-msgstr ""
-
-#: includes/FlowFlow.php:76
-msgid "h"
-msgstr ""
-
-#: includes/FlowFlow.php:77
-msgid "ago"
-msgstr ""
-
-#: includes/FlowFlow.php:79
-msgid "Jan"
-msgstr ""
-
-#: includes/FlowFlow.php:79
-msgid "Feb"
-msgstr ""
-
-#: includes/FlowFlow.php:79
-msgid "March"
-msgstr ""
-
-#: includes/FlowFlow.php:80
-msgid "April"
-msgstr ""
-
-#: includes/FlowFlow.php:80
-msgid "May"
-msgstr ""
-
-#: includes/FlowFlow.php:80
-msgid "June"
-msgstr ""
-
-#: includes/FlowFlow.php:81
-msgid "July"
-msgstr ""
-
-#: includes/FlowFlow.php:81
-msgid "Aug"
-msgstr ""
-
-#: includes/FlowFlow.php:81
-msgid "Sept"
-msgstr ""
-
-#: includes/FlowFlow.php:82
-msgid "Oct"
-msgstr ""
-
-#: includes/FlowFlow.php:82
-msgid "Nov"
-msgstr ""
-
-#: includes/FlowFlow.php:82
-msgid "Dec"
-msgstr ""
-
-#: includes/FlowFlow.php:85
-msgid "Navigate with arrow keys"
-msgstr ""
-
-#: includes/FlowFlowActivator.php:44
+#: includes/FlowFlowActivator.php:79
 msgid "Social Stream"
 msgstr ""
 
-#: includes/FlowFlowActivator.php:48
+#: includes/FlowFlowActivator.php:83
 msgid "Flow-Flow plugin social stream"
 msgstr ""
 
-#: includes/FlowFlowActivator.php:50
+#: includes/FlowFlowActivator.php:85
 msgid "Social"
 msgstr ""
 
-#: includes/FlowFlowActivator.php:59
+#: includes/FlowFlowActivator.php:93
 msgid "Choose stream to place on page:"
 msgstr ""
 
-#: includes/FlowFlowActivator.php:208
-msgid "Technical problems / hard to use"
-msgstr ""
-
-#: includes/FlowFlowActivator.php:212
-msgid "Free version is limited"
-msgstr ""
-
-#: includes/FlowFlowActivator.php:216
-msgid "Premium is expensive"
-msgstr ""
-
-#: includes/FlowFlowActivator.php:220
-msgid "Upgrading to paid version"
-msgstr ""
-
-#: includes/FlowFlowActivator.php:224
-msgid "Not what I need"
-msgstr ""
-
-#: includes/FlowFlowWPWidget.php:59
+#: includes/FlowFlowWPWidget.php:62
 msgid "Title:"
 msgstr ""
 
-#: includes/FlowFlowWPWidget.php:63
+#: includes/FlowFlowWPWidget.php:66
 msgid "Stream:"
 msgstr ""
 
-#: includes/LAAdminBase.php:94 includes/LAAdminBase.php:215
+#: includes/LAAdminBase.php:93 includes/LAAdminBase.php:214
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/display_deactivation_popup.php:8
-msgid ""
-"Please kindly let us know why you are deactivating. Your answer will help "
-"us to serve you better"
+#: views/public.php:31
+msgid "All"
 msgstr ""
 
-#: includes/display_deactivation_popup.php:23
-msgid "Deactivate"
+#: views/public.php:32
+msgid "Search"
 msgstr ""
 
-#: includes/display_deactivation_popup.php:26
-msgid "Submit and deactivate"
+#: views/public.php:33
+msgid "Expand"
 msgstr ""
 
-#: includes/display_deactivation_popup.php:28
-msgid "Cancel"
+#: views/public.php:34
+msgid "Collapse"
+msgstr ""
+
+#: views/public.php:35
+msgid "Posted on"
+msgstr ""
+
+#: views/public.php:36
+msgid "Followers"
+msgstr ""
+
+#: views/public.php:37
+msgid "Following"
+msgstr ""
+
+#: views/public.php:38
+msgid "Posts"
+msgstr ""
+
+#: views/public.php:39
+msgid "Show more"
+msgstr ""
+
+#: views/public.php:42
+msgid "Yesterday"
+msgstr ""
+
+#: views/public.php:43
+msgid "s"
+msgstr ""
+
+#: views/public.php:44
+msgid "m"
+msgstr ""
+
+#: views/public.php:45
+msgid "h"
+msgstr ""
+
+#: views/public.php:46
+msgid "ago"
+msgstr ""
+
+#: views/public.php:48
+msgid "Jan"
+msgstr ""
+
+#: views/public.php:48
+msgid "Feb"
+msgstr ""
+
+#: views/public.php:48
+msgid "March"
+msgstr ""
+
+#: views/public.php:49
+msgid "April"
+msgstr ""
+
+#: views/public.php:49
+msgid "May"
+msgstr ""
+
+#: views/public.php:49
+msgid "June"
+msgstr ""
+
+#: views/public.php:50
+msgid "July"
+msgstr ""
+
+#: views/public.php:50
+msgid "Aug"
+msgstr ""
+
+#: views/public.php:50
+msgid "Sept"
+msgstr ""
+
+#: views/public.php:51
+msgid "Oct"
+msgstr ""
+
+#: views/public.php:51
+msgid "Nov"
+msgstr ""
+
+#: views/public.php:51
+msgid "Dec"
+msgstr ""
+
+#: views/public.php:54
+msgid "Navigate with arrow keys"
+msgstr ""
+
+#: views/public.php:55
+msgid "View on"
+msgstr ""
+
+#: views/public.php:56
+msgid "View on site"
+msgstr ""
+
+#: views/public.php:57
+msgid "View all"
+msgstr ""
+
+#: views/public.php:58
+msgid "comments"
+msgstr ""
+
+#: views/public.php:59
+msgid "Scroll for more"
+msgstr ""
+
+#: views/public.php:60
+msgid "No comments yet."
+msgstr ""
+
+#: views/public.php:61
+msgid "Be the first!"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Flow-Flow Lite"
+msgid "Flow-Flow"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

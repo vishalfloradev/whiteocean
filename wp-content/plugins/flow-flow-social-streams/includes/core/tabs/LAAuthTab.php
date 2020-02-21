@@ -9,7 +9,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class LAAuthTab implements LATab {
 	private $prefix;
@@ -31,6 +31,7 @@ class LAAuthTab implements LATab {
 	}
 
 	public function includeOnce( $context ) {
+		/** @noinspection PhpIncludeInspection */
 		include_once($context['root']  . 'views/auth.php');
 	}
 }

@@ -8,7 +8,7 @@
  * @package   FlowFlow
  * @author    Looks Awesome <email@looks-awesome.com>
  * @link      http://looks-awesome.com
- * @copyright 2014-2017 Looks Awesome
+ * @copyright Looks Awesome
  */
 ?>
 <div class="section-content" data-tab="addons-tab">
@@ -25,7 +25,7 @@
                     <p class="extension__text">Personalize your Flow-Flow stream with custom cards. Make sticky and always show custom content: your brand advertisement with links to social profiles, custom advertisements (like AdSense), any announcements, event promotion and whatever you think of.<br>
                         <strong>Supported products:</strong> Flow-Flow PRO v 2.5+, Flow-Flow Lite v 3.0.5+</p>
 
-                </div>
+                 </div>
 
             </div>
             <div class="extension__item" id="extension-tv">
@@ -35,7 +35,7 @@
                     <h1 class="extension__title">Big Screens extension</h1>
                     <p class="extension__text">Cast your social hub directly to a live TV, projector, or HDMI broadcast device with just one click! This extension comes with realtime updating and posts automatic rotation for full-screen mode. You just need to output stream page to desired screen.<br>
                         <strong>Supported products:</strong> Flow-Flow PRO v 2.8+, Flow-Flow Lite v 3.0.5+</p>
-                </div>
+                 </div>
 
             </div>
         </div>
@@ -63,5 +63,8 @@
             </div>
         </div>
     </div>
-    <?php include($context['root']  . 'views/footer.php'); ?>
+    <?php
+    	/** @noinspection PhpIncludeInspection */
+		include($context['root']  . 'views/footer.php');
+	?>
 </div>

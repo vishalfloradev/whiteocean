@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 
 class FFStreamsTab implements LATab{
@@ -57,13 +57,6 @@ class FFStreamsTab implements LATab{
 //		$export[0]['heading'] = '';
 		?>
 		<script>
-//			var str = '<?php //echo json_encode($export, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>//';
-			/*str = str.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t").replace(/\\\'/g, "'")
-			var streams = JSON.parse(str, function(name, value) {
-				//if (name === 'css') debugger
-				return value
-			});
-			*/
 			var streams = <?php echo json_encode($export, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
 		</script>
 		<div class="section-content" id="streams-cont" data-tab="streams-tab">
@@ -134,7 +127,7 @@ class FFStreamsTab implements LATab{
                 <div class="section rating-promo">
                     <div class="fb-wrapper"><div class="fb-page" data-href="https://www.facebook.com/SocialStreamApps/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/SocialStreamApps/"><a href="https://www.facebook.com/SocialStreamApps/">Looks Awesome</a></blockquote></div></div></div>
                     <h1 class="desc-following"><span>Help plugin to grow</span></h1>
-                    <p class="">A lot of users only think to review Flow-Flow when something goes wrong while many more people use it satisfactory. Don't let this go unnoticed. If you find Flow-Flow useful please leave your honest rating and review on <a href="https://wordpress.org/plugins/flow-flow-social-streams" target="_blank">Plugin page</a> to help Flow-Flow grow and endorse its further development!</p>
+                    <p class="">A lot of users only think to review Flow-Flow when something goes wrong while many more people use it satisfactory. Don't let this go unnoticed. If you find Flow-Flow useful please leave your honest rating and review on plugins <a href="http://codecanyon.net/downloads" target="_blank">Downloads page</a> to help Flow-Flow grow and endorse its further development!</p>
                 </div>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FFGeneralSettings {
 	private static $instance = null;
@@ -74,17 +74,24 @@ class FFGeneralSettings {
 	}
 
 	public function canModerate() {
+		foreach ( $this->roles() as $role ) {
+			if (function_exists('current_user_can') && current_user_can($role)) return true;
+		}
 		return false;
 	}
 
 	public function roles(){
 		$roles = array();
 		foreach ( $this->options as $key => $value ) {
-			if (strpos($key, 'mod-role-') === 0 && $value == 'yep'){
+			if (strpos($key, 'mod-role-') === 0 && $value == FFSettingsUtils::YEP){
 				$roles[] = str_replace('mod-role-', '', $key);
 			}
 		}
 		if (empty($roles)) return array('administrator');
 		return $roles;
+	}
+
+	public function enabledEmailNotification() {
+		return FFSettingsUtils::YepNope2ClassicStyleSafe($this->options, 'general-notifications', false);
 	}
 }

@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FFCacheAdapter implements FFCache{
 	private $force;
@@ -29,6 +29,10 @@ class FFCacheAdapter implements FFCache{
 	}
 
 	public function setStream( $stream, $moderation = false ) {
+		if ($moderation){
+			$this->cache = $this->admin() ?
+				new FFAdminModerationCacheManager($this->context, $this->force) : new FFModerationCacheManager($this->context, $this->force);
+		}
 		$this->cache->setStream($stream);
 	}
 
@@ -50,5 +54,12 @@ class FFCacheAdapter implements FFCache{
 
 	public function moderate() {
 		$this->cache->moderate();
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function admin(){
+		return FF_USE_WP ? $this->generalSettings->canModerate() : ff_user_can_moderate();
 	}
 }

@@ -16,23 +16,22 @@ namespace phpFastCache\Drivers\Sqlite;
 
 use PDO;
 use PDOException;
-use phpFastCache\Cache\ExtendedCacheItemInterface;
-use phpFastCache\Core\DriverAbstract;
-use phpFastCache\Core\PathSeekerTrait;
-use phpFastCache\Core\StandardPsr6StructureTrait;
-use phpFastCache\Entities\driverStatistic;
+use phpFastCache\Core\Pool\DriverBaseTrait;
+use phpFastCache\Core\Pool\ExtendedCacheItemPoolInterface;
+use phpFastCache\Core\Pool\IO\IOHelperTrait;
 use phpFastCache\Exceptions\phpFastCacheDriverCheckException;
-use phpFastCache\Exceptions\phpFastCacheDriverException;
-use phpFastCache\Util\Directory;
+use phpFastCache\Exceptions\phpFastCacheInvalidArgumentException;
+use phpFastCache\Exceptions\phpFastCacheIOException;
 use Psr\Cache\CacheItemInterface;
 
 /**
  * Class Driver
  * @package phpFastCache\Drivers
+ * @todo Remove "exp" column in V7
  */
-class Driver extends DriverAbstract
+class Driver implements ExtendedCacheItemPoolInterface
 {
-    use PathSeekerTrait;
+    use DriverBaseTrait, IOHelperTrait;
 
     /**
      *
@@ -66,7 +65,8 @@ class Driver extends DriverAbstract
     /**
      * Driver constructor.
      * @param array $config
-     * @throws phpFastCacheDriverException
+     * @throws phpFastCacheDriverCheckException
+     * @throws phpFastCacheIOException
      */
     public function __construct(array $config = [])
     {
@@ -75,8 +75,8 @@ class Driver extends DriverAbstract
         if (!$this->driverCheck()) {
             throw new phpFastCacheDriverCheckException(sprintf(self::DRIVER_CHECK_FAILURE, $this->getDriverName()));
         } else {
-            if (!file_exists($this->getSqliteDir()) && !@mkdir($this->getSqliteDir(), $this->setChmodAuto(), true)) {
-                throw new phpFastCacheDriverException(sprintf('Sqlite cannot write in "%s", aborting...', $this->getPath()));
+            if (!file_exists($this->getSqliteDir()) && !@mkdir($this->getSqliteDir(), $this->getDefaultChmod(), true)) {
+                throw new phpFastCacheIOException(sprintf('Sqlite cannot write in "%s", aborting...', $this->getPath()));
             } else {
                 $this->driverConnect();
             }
@@ -97,7 +97,7 @@ class Driver extends DriverAbstract
      */
     public function driverCheck()
     {
-        return extension_loaded('pdo_sqlite') && (is_writable($this->getSqliteDir()) || @mkdir($this->getSqliteDir(), $this->setChmodAuto(), true));
+        return extension_loaded('pdo_sqlite') && (is_writable($this->getSqliteDir()) || @mkdir($this->getSqliteDir(), $this->getDefaultChmod(), true));
     }
 
     /**
@@ -245,7 +245,7 @@ class Driver extends DriverAbstract
     /**
      * @param \Psr\Cache\CacheItemInterface $item
      * @return mixed
-     * @throws \InvalidArgumentException
+     * @throws phpFastCacheInvalidArgumentException
      */
     protected function driverWrite(CacheItemInterface $item)
     {
@@ -268,9 +268,10 @@ class Driver extends DriverAbstract
             }
 
             if ($toWrite == true) {
+                $sql = "INSERT OR REPLACE INTO `caching` (`keyword`,`object`,`exp`) values(:keyword,:object,:exp)";
                 try {
                     $stm = $this->getDb($item->getKey())
-                      ->prepare("INSERT OR REPLACE INTO `caching` (`keyword`,`object`,`exp`) values(:keyword,:object,:exp)");
+                      ->prepare($sql);
                     $stm->execute([
                       ':keyword' => $item->getKey(),
                       ':object' => $this->encode($this->driverPreWrap($item)),
@@ -279,10 +280,9 @@ class Driver extends DriverAbstract
 
                     return true;
                 } catch (\PDOException $e) {
-
                     try {
                         $stm = $this->getDb($item->getKey(), true)
-                          ->prepare("INSERT OR REPLACE INTO `caching` (`keyword`,`object`,`exp`) values(:keyword,:object,:exp)");
+                          ->prepare($sql);
                         $stm->execute([
                           ':keyword' => $item->getKey(),
                           ':object' => $this->encode($this->driverPreWrap($item)),
@@ -296,28 +296,28 @@ class Driver extends DriverAbstract
 
             return false;
         } else {
-            throw new \InvalidArgumentException('Cross-Driver type confusion detected');
+            throw new phpFastCacheInvalidArgumentException('Cross-Driver type confusion detected');
         }
     }
 
     /**
      * @param \Psr\Cache\CacheItemInterface $item
-     * @return mixed
+     * @return null|array
      */
     protected function driverRead(CacheItemInterface $item)
     {
+        $sql = "SELECT * FROM `caching` WHERE `keyword`=:keyword LIMIT 1";
         try {
             $stm = $this->getDb($item->getKey())
-              ->prepare("SELECT * FROM `caching` WHERE `keyword`=:keyword LIMIT 1");
+              ->prepare($sql);
             $stm->execute([
               ':keyword' => $item->getKey(),
             ]);
             $row = $stm->fetch(PDO::FETCH_ASSOC);
-
         } catch (PDOException $e) {
             try {
                 $stm = $this->getDb($item->getKey(), true)
-                  ->prepare("SELECT * FROM `caching` WHERE `keyword`=:keyword LIMIT 1");
+                  ->prepare($sql);
                 $stm->execute([
                   ':keyword' => $item->getKey(),
                 ]);
@@ -337,7 +337,7 @@ class Driver extends DriverAbstract
     /**
      * @param \Psr\Cache\CacheItemInterface $item
      * @return bool
-     * @throws \InvalidArgumentException
+     * @throws phpFastCacheInvalidArgumentException
      */
     protected function driverDelete(CacheItemInterface $item)
     {
@@ -357,7 +357,7 @@ class Driver extends DriverAbstract
                 return false;
             }
         } else {
-            throw new \InvalidArgumentException('Cross-Driver type confusion detected');
+            throw new phpFastCacheInvalidArgumentException('Cross-Driver type confusion detected');
         }
     }
 
@@ -386,39 +386,14 @@ class Driver extends DriverAbstract
     protected function driverConnect()
     {
         if (!file_exists($this->getPath() . '/' . self::FILE_DIR)) {
-            if (!mkdir($this->getPath() . '/' . self::FILE_DIR, $this->setChmodAuto(), true)
+            if (!mkdir($this->getPath() . '/' . self::FILE_DIR, $this->getDefaultChmod(), true)
             ) {
                 $this->fallback = true;
             }
         }
         $this->SqliteDir = $this->getPath() . '/' . self::FILE_DIR;
-    }
 
-    /********************
-     *
-     * PSR-6 Extended Methods
-     *
-     *******************/
-
-    /**
-     * @return driverStatistic
-     * @throws PDOException
-     */
-    public function getStats()
-    {
-        $stat = new driverStatistic();
-        $path = $this->getFilePath(false);
-
-        if (!is_dir($path)) {
-            throw new phpFastCacheDriverException("Can't read PATH:" . $path, 94);
-        }
-
-        $stat->setData(implode(', ', array_keys($this->itemInstances)))
-          ->setRawData([])
-          ->setSize(Directory::dirSize($path))
-          ->setInfo('Number of files used to build the cache: ' . Directory::getFileCount($path));
-
-        return $stat;
+        return true;
     }
 
     /**

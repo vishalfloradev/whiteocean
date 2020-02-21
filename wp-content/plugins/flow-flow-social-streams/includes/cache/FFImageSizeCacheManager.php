@@ -2,6 +2,7 @@
 if ( ! defined( 'WPINC' ) ) die;
 
 use flow\db\FFDB;
+use flow\social\cache\FFImageSizeCacheBase;
 
 /**
  * Flow-Flow.
@@ -10,9 +11,9 @@ use flow\db\FFDB;
  * @author    Looks Awesome <email@looks-awesome.com>
 
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
-class FFImageSizeCacheManager {
+class FFImageSizeCacheManager extends FFImageSizeCacheBase {
 	const FF_IMG_CACHE_SIZE = 1000;
 
     private $size;

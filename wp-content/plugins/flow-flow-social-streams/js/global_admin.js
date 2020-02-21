@@ -280,6 +280,7 @@
         $item.find('.wp-menu-name').append(str);
         $item.find('.wp-submenu li:eq(2)').prepend(str)
       }
+
     }
 
     function isSuitableToShow (id) {

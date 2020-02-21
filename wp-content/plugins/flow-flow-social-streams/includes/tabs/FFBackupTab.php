@@ -1,5 +1,6 @@
 <?php namespace flow\tabs;
 
+use flow\settings\FFSnapshotManager;
 use la\core\tabs\LATab;
 
 if ( ! defined( 'WPINC' ) ) die;
@@ -10,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FFBackupTab implements LATab {
 	public function __construct() {
@@ -29,7 +30,9 @@ class FFBackupTab implements LATab {
 	}
 
 	public function includeOnce( $context ) {
-		$context['backups'] = array();
+		$manager            = new FFSnapshotManager( $context );
+		$context['backups'] = $manager->getSnapshots();
+		/** @noinspection PhpIncludeInspection */
 		include_once($context['root']  . 'views/backup.php');
 	}
 }

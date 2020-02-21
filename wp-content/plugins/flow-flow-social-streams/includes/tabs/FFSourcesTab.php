@@ -1,5 +1,6 @@
 <?php namespace flow\tabs;
 
+use flow\settings\FFSettingsUtils;
 use la\core\tabs\LATab;
 
 if ( ! defined( 'WPINC' ) ) die;
@@ -10,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 class FFSourcesTab implements LATab {
 	public function __construct() {
@@ -76,7 +77,9 @@ class FFSourcesTab implements LATab {
 									}
 								}
 								if (isset($feed['timeline-type'])) $settingArr['timeline-type'] = $feed['timeline-type'];
-								if (isset($feed['mod']) && $feed['mod'] !== 'nope') $settingArr['mod'] = $feed['mod'];
+								if (isset($feed['mod']) && $feed['mod'] !== FFSettingsUtils::NOPE) $settingArr['mod'] = $feed['mod'];
+
+                                $settingArr['id'] = 'ID: ' . $feed['id'];
 
 								foreach ($settingArr  as $key => $value ) {
 									if (!empty($value)) {
@@ -93,13 +96,13 @@ class FFSourcesTab implements LATab {
 											$v = str_replace('https://', '', $v);
 											$k = str_replace('timeline-', '', $key);
 											$k = str_replace('-', ' ', ucfirst($k));
-											if ($key === 'mod') $v = 'moderated';
+											if ( $key === 'mod' ) $v = 'moderated';
 
 											if ( strlen($v) > 20) {
 												$v = substr( $v , 0, 20 ) . '...';
 											}
 
-											$settings .= '<span><span class="highlight">' . $v . '</span></span>';
+											$settings .= '<span><span class="highlight' . ( $key === 'id' ? ' highlight-id' : '' ) . '">' . $v . '</span></span>';
 //										}
 									}
 								}
@@ -107,7 +110,7 @@ class FFSourcesTab implements LATab {
 								// it will be done via JS
 								// $status = (isset($feed['status']) && $feed['status'] == 1) ? 'cache-status-ok' : 'cache-status-error';
 								//$last_update = $feed['last_update'] == 0 ? '' : FFFeedUtils::classicStyleDate($feed['last_update']);
-								$enabled = isset($feed['enabled']) ? ($feed['enabled'] === 'yep'? true : false) : true;
+								$enabled = FFSettingsUtils::YepNope2ClassicStyleSafe($feed, 'enabled', true);
 
 								$fc = $feed['cache_lifetime'];
 								if ($fc == 5) {
@@ -149,8 +152,7 @@ class FFSourcesTab implements LATab {
 							<div class="section">
 								<i class="popupclose flaticon-close-4"></i>
 								<div class="networks-choice add-feed-step">
-									<h1>Create feed to use in your streams.</h1>
-									<p class="desc">Choose source and then set up what content you want to load from it.</p>
+									<h1>Create new feed</h1>
 									<ul class="networks-list">
 										<li class="network-twitter"
 											data-network="twitter"
@@ -167,81 +169,70 @@ class FFSourcesTab implements LATab {
 											data-network-name="Instagram">
 											<i class="flaticon-instagram"></i>
 										</li>
+										<li class="network-youtube"
+											data-network="youtube"
+											data-network-name="YouTube">
+											<i class="flaticon-youtube"></i>
+										</li>
 										<li class="network-pinterest"
 											data-network="pinterest"
 											data-network-name="Pinterest">
 											<i class="flaticon-pinterest"></i>
 										</li>
-                                        <li class="network-youtube locked"
-                                            data-network="youtube"
-                                            data-network-name="Locked">
-                                            <i class="flaticon-youtube"></i>
-                                            <i class="ff-icon-lock"></i>
-                                        </li>
-										<li class="network-linkedin locked"
+										<li class="network-linkedin"
 											data-network="linkedin"
-											data-network-name="Locked">
+											data-network-name="LinkedIn">
 											<i class="flaticon-linkedin"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
 
-										<li class="network-flickr locked"
+										<li class="network-flickr"
 											data-network="flickr"
-											data-network-name="Locked">
+											data-network-name="Flickr">
 											<i class="flaticon-flickr"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-tumblr locked"
+										<li class="network-tumblr"
 											data-network="tumblr"
-											data-network-name="Locked"
+											data-network-name="Tumblr"
 											style="margin-right:0">
 											<i class="flaticon-tumblr"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
 										<br>
 
-										<li class="network-google locked"
+										<li class="network-google"
 											data-network="google"
-											data-network-name="Locked">
+											data-network-name="Google +">
 											<i class="flaticon-google"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-vimeo locked"
+										<li class="network-vimeo"
 											data-network="vimeo"
-											data-network-name="Locked">
+											data-network-name="Vimeo">
 											<i class="flaticon-vimeo"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-wordpress locked"
+										<li class="network-wordpress"
 											data-network="wordpress"
-											data-network-name="Locked">
+											data-network-name="WordPress">
 											<i class="flaticon-wordpress"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-foursquare locked"
+										<li class="network-foursquare"
 											data-network="foursquare"
-											data-network-name="Locked">
+											data-network-name="Foursquare">
 											<i class="flaticon-foursquare"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-soundcloud locked"
+										<li class="network-soundcloud"
 											data-network="soundcloud"
-											data-network-name="Locked">
+											data-network-name="SoundCloud">
 											<i class="flaticon-soundcloud"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-dribbble locked"
+										<li class="network-dribbble"
 											data-network="dribbble"
-											data-network-name="Locked">
+											data-network-name="Dribbble">
 											<i class="flaticon-dribbble"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
-										<li class="network-rss locked"
+										<li class="network-rss"
 											data-network="rss"
-											data-network-name="Locked"
+											data-network-name="RSS"
 											style="margin-right:0">
 											<i class="flaticon-rss"></i>
-                                            <i class="ff-icon-lock"></i>
 										</li>
 									</ul>
 								</div>
@@ -268,7 +259,10 @@ class FFSourcesTab implements LATab {
 					</div>
 				</div>
 			</div>
-			<?php include($context['root']  . 'views/footer.php'); ?>
+			<?php
+				/** @noinspection PhpIncludeInspection */
+				include($context['root']  . 'views/footer.php');
+			?>
 		</div>
 	<?php
 	}

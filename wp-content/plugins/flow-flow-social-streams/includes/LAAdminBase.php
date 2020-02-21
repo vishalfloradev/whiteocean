@@ -9,7 +9,7 @@ if ( ! defined( 'WPINC' ) ) die;
  * @author    Looks Awesome <email@looks-awesome.com>
  *
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 abstract class LAAdminBase {
 	/** @var LADBManager $db */
@@ -28,8 +28,7 @@ abstract class LAAdminBase {
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_social_stream_admin_menu' ) );
 
-		//$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->getPluginSlug() . '.php' );
-		$plugin_basename = $context['plugin_dir_name'] . '/' . $context['slug'] . '.php';
+		$plugin_basename = $this->getPluginSlug() . '/' . $this->getPluginSlug() . '.php';
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 		
 		// Add the options page and menu item.
@@ -65,7 +64,7 @@ abstract class LAAdminBase {
 	 */
 	public final function enqueue_admin_scripts($hook) {
 		$screen_id = 'social-apps_page_' . $this->getPluginSlug() . '-admin';
-		$plugin_directory = $this->context['plugin_url'] . $this->context['plugin_dir_name'] . '/';
+		$plugin_directory = plugins_url() . '/' . $this->getPluginSlug() . '/';
 		
 		$this->enqueueAdminStylesAlways($plugin_directory);
 		$this->enqueueAdminScriptsAlways($plugin_directory);
@@ -125,7 +124,7 @@ abstract class LAAdminBase {
 	protected function enqueueAdminScriptsOnlyAtNewsPage($plugin_directory){
 		wp_enqueue_script($this->getPluginSlug() . '-news', $plugin_directory . 'js/news.js', array('jquery', 'underscore'), $this->context['version']);
 		wp_localize_script($this->getPluginSlug() . '-news', 'FFIADMIN', array(
-				'assets_url' => $this->context['plugin_url'] . '/' . $this->context['slug'] . '-social-streams',
+				'assets_url' => $this->context['plugin_url'] . '/' . $this->context['slug'],
 				'plugins' => $this->getPluginsState(),
 				'requirements' => array(
 						'php_status' => version_compare(phpversion(), '5.3', '>='),
@@ -163,6 +162,10 @@ abstract class LAAdminBase {
 			'insta-flow' => array(
 					'insta-flow/insta-flow.php',
 					'insta-flow-admin',
+			),
+			'social-stacks' => array(
+					'social-stacks/social-stacks.php',
+					'social-stacks-admin',
 			)
 		);
 		
@@ -184,17 +187,17 @@ abstract class LAAdminBase {
 	}
 	
 	private function addPluginAdminMenu($displayAdminPageFunction){
-		$plugin_directory = $this->context['plugin_url'] . $this->context['plugin_dir_name'];
+		$plugin_directory = $this->context['plugin_url'] . $this->getPluginSlug() . '/';
 		
 		$wp_version = (float)get_bloginfo('version');
 		if ($wp_version > 3.8) { // From 3.8 WP supports SVG icons
-			$icon = $plugin_directory . '/assets/social-streams-icon.svg';
+			$icon = $plugin_directory . 'assets/social-streams-icon.svg';
 		} else {
 			$icon = 'dashicons-networking';
 		}
 		
 		if ( empty ( $GLOBALS['admin_page_hooks']['flow-flow'] ) ){
-			return add_menu_page(
+			add_menu_page(
 				'Social Apps',
 				'Social Apps',
 				'manage_options',
@@ -212,8 +215,10 @@ abstract class LAAdminBase {
 			}
 		}
 		$context = $this->context;
+		$activated = $this->db->registrationCheck();
 		$this->db->dataInit();
-		$context['activated'] = false;
+		$context['activated'] = $activated;
+		/** @noinspection PhpIncludeInspection */
 		include_once($context['root']  . 'views/news.php');
 	}
 }

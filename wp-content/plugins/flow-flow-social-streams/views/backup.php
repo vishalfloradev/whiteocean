@@ -8,7 +8,7 @@
  * @package   FlowFlow
  * @author    Looks Awesome <email@looks-awesome.com>
  * @link      http://looks-awesome.com
- * @copyright 2014-2016 Looks Awesome
+ * @copyright Looks Awesome
  */
 $backups = $context['backups'];
 ?>
@@ -42,18 +42,11 @@ $backups = $context['backups'];
 			</tbody>
 		</table>
 
-		<span class='admin-button green-button create_backup disabled'>
-            <div class="hint-block">
-                <i class="hint-link ff-icon-lock"></i>
-                <span>Create new database snapshot</span>
-                <div class="hint hint-pro">
-                    <h1>PREMIUM FEATURE</h1>
-                    To get access to this and many other premium features please upgrade to PRO version.<br>
-                    <a class="btn" href="http://goo.gl/g7XQzu" target="_blank">UPGRADE NOW</a>
-                </div>
-            </div>
-        </span>
+		<span class='admin-button green-button create_backup'>Create new database snapshot</span>
 	</div>
-	<?php include($context['root']  . 'views/footer.php'); ?>
+	<?php
+		/** @noinspection PhpIncludeInspection */
+		include($context['root']  . 'views/footer.php');
+	?>
 
 </div>
