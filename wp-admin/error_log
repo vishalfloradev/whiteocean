@@ -359,3 +359,16 @@
 #8 /home/florafountain/public_html/2020/whiteocean/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
 #9 /home/florafountain/public_html/2020/whiteocean/wp-admin/admin-ajax.php(190): do_action('wp_ajax_nopriv_...')
 #10 {main}
+[17-Feb-2020 10:55:29 UTC] Resolving timed out after 10000 milliseconds
+[17-Feb-2020 10:55:29 UTC] #0 /home/florafountain/public_html/2020/whiteocean/wp-content/plugins/flow-flow-social-streams/includes/social/FFTwitter.php(47): flow\social\FFTwitterAPIExchange->performRequest()
+#1 /home/florafountain/public_html/2020/whiteocean/wp-content/plugins/flow-flow-social-streams/includes/social/FFBaseFeed.php(111): flow\social\FFTwitter->onePagePosts()
+#2 /home/florafountain/public_html/2020/whiteocean/wp-content/plugins/flow-flow-social-streams/includes/cache/FFCacheManager.php(58): flow\social\FFBaseFeed->posts(false)
+#3 /home/florafountain/public_html/2020/whiteocean/wp-content/plugins/flow-flow-social-streams/includes/cache/FFCacheAdapter.php(36): flow\cache\FFCacheManager->posts(Array, false)
+#4 /home/florafountain/public_html/2020/whiteocean/wp-content/plugins/flow-flow-social-streams/includes/LABase.php(365): flow\cache\FFCacheAdapter->posts(Array, false)
+#5 /home/florafountain/public_html/2020/whiteocean/wp-content/plugins/flow-flow-social-streams/includes/LABase.php(148): flow\LABase->process4feeds(Array, false, true)
+#6 /home/florafountain/public_html/2020/whiteocean/wp-includes/class-wp-hook.php(288): flow\LABase->processAjaxRequestBackground('')
+#7 /home/florafountain/public_html/2020/whiteocean/wp-includes/class-wp-hook.php(312): WP_Hook->apply_filters('', Array)
+#8 /home/florafountain/public_html/2020/whiteocean/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#9 /home/florafountain/public_html/2020/whiteocean/wp-admin/admin-ajax.php(190): do_action('wp_ajax_nopriv_...')
+#10 {main}
+[20-Feb-2020 09:55:32 UTC] PHP Warning:  floatval() expects exactly 1 parameter, 2 given in /home/florafountain/public_html/2020/whiteocean/wp-content/themes/flora/functions.php on line 340

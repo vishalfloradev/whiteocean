@@ -313,3 +313,121 @@ function custom_class_contact( $classes ) {
     }
     return $classes;
 }
+
+
+
+function example_ajax_request() {
+	
+$investment=$_REQUEST['initial'];
+$year=$_REQUEST['years'];
+$rate=$_REQUEST['rate'];
+$n=$_REQUEST['nval'];
+
+//function interest($investment,$year,$rate=15,$n=1){
+    $accumulated=0;
+	$int = 0;
+	for ($x = 1; $x <= $year; $x++) {
+     $accumulated = $investment + $int;
+	 $accumulated =  $accumulated * pow(1 + $rate/(100 * $n),$n);
+	$int = $accumulated - $investment;
+	$finalamount =$investment + round($int,2);
+}
+ $int++;
+ echo '<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">After '.$year.' years, the accumulated interest is </h5> <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">₹ '.number_format($finalamount,2).'</h5>';
+ die();
+}
+add_action( 'wp_ajax_example_ajax_request', 'example_ajax_request' );
+add_action( 'wp_ajax_nopriv_example_ajax_request', 'example_ajax_request' );
+
+function sip_example_ajax_request() {
+	
+$investment=$_REQUEST['initial'];
+$year=$_REQUEST['years'];
+$rate=$_REQUEST['rate'];
+$n=$_REQUEST['nval'];
+
+if($n == 12)
+{
+//function interest($investment,$year,$rate=15,$n=1){
+      $accumulated=0;
+	$int = 0;
+	$inttotal= 0;
+	$n = $year*12;
+	for ($x = 1; $x <= $n; $x++) {
+		if($n >1)
+		{
+	$accumulated = $investment + $int;
+		}
+		else
+		{
+			$accumulated = $inttotal + $investment;
+		}
+	$accumulated =  $accumulated * pow(1 + $rate/(100 * $n),$n);	
+			// echo $accumulated;
+	$int = $accumulated - $investment;
+    $inttotal = $inttotal + $investment + (round($int,2)/12);
+	$finalamount = round($inttotal,2);
+     }
+	  $int++;
+	 $inttotal++;
+	 		
+ echo '<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">After '.$year.' years, the accumulated interest is </h5> <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">₹ '.number_format($finalamount,2).'</h5>';
+}
+if($n == 4)
+{
+	 $accumulated=0;
+	$int = 0;
+	$inttotal= 0;
+	$n = $year*$n;
+	for ($x = 1; $x <= $n; $x++) {
+		if($n >1)
+		{
+	$accumulated = $investment + $int;
+		}
+		else
+		{
+			$accumulated = $inttotal + $investment;
+		}
+	$accumulated =  $accumulated * pow(1 + $rate/(100 * $n),$n);	
+			// echo $accumulated;
+	$int = $accumulated - $investment;
+    $inttotal = $inttotal + $investment + ((round($int,2)/12)*3);
+	$finalamount = round($inttotal,2);
+			
+     }
+	  $int++;
+	 $inttotal++;
+	  echo '<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">After '.$year.' years, the accumulated interest is </h5> <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">₹ '.number_format($finalamount,2).'</h5>';
+}
+ die();
+}
+add_action( 'wp_ajax_sip_example_ajax_request', 'sip_example_ajax_request' );
+add_action( 'wp_ajax_nopriv_sip_example_ajax_request', 'sip_example_ajax_request' );
+
+
+function goal_example_ajax_request() {
+	
+$investment=$_REQUEST['initial'];
+$year=$_REQUEST['years'];
+$rate=$_REQUEST['rate'];
+$n=$_REQUEST['nval'];
+
+//function interest($investment,$year,$rate=15,$n=1){
+   $accumulated=0;
+	$int = 0;
+	$n = $year*12;
+	for ($x = 1; $x <= $n; $x++) {
+	$accumulated = $investment;	
+	$accumulated =  $accumulated * pow(1 + $rate/(100 * $n),$n);
+	$int = $accumulated - $investment;
+	$int = $int /12 ;
+	$investment = $investment - $int ;
+}
+ 	$int++;
+ 	$investment++;
+	 $finalamount = round($investment / 12,2);
+ echo '<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">After '.$year.' years, the accumulated interest is </h5> <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">₹ '.number_format($finalamount,2).'</h5>';
+ die();
+}
+add_action( 'wp_ajax_goal_example_ajax_request', 'goal_example_ajax_request' );
+add_action( 'wp_ajax_nopriv_goal_example_ajax_request', 'goal_example_ajax_request' );
