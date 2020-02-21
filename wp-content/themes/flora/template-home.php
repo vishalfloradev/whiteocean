@@ -104,7 +104,7 @@ get_header();
                 <h3 class="mt-0 bl-clo font-25 font-wei-400 line-height-35 pg-top-10"><?php echo get_the_title(get_the_ID());?></h3>
               </div>
               <div class="text">
-                <p class="text-left pg-top-10 bl-clo mb-6 mb-lg-8 bl-clo font-18 font-wei-400 line-height-30"><?php echo substr(get_the_content(),0,40).'..';?></p>
+                <p class="text-left pg-top-10 bl-clo mb-6 mb-lg-8 bl-clo font-18 font-wei-400 line-height-30"><?php the_field('solution_home_content');?></p>
               </div>
               <a class="saffron-clo" href="<?php echo get_permalink();?>">READ MORE</a> </div>
           </div>
@@ -121,6 +121,7 @@ get_header();
                                                     ?>
         </div>
       </div>
+      
       <div class="col-12 col-md-6 col-lg-6 order-md-1 aos-init aos-animate" data-aos="fade-up">
         <?php if( have_rows('our_solutions') ):  $i=0; ?>
         <?php while( have_rows('our_solutions') ): the_row(); 
@@ -178,53 +179,131 @@ get_header();
   <div class="container">
     <div class="row align-items-center"> <span class="text-center font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase m-auto">calculator</span>
       <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">Lorem Ipsum is simply dummy text of the</h5>
-      <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
+      <div class="col-12 col-md-12 col-lg-12 aos-init aos-animate pg-top-40" data-aos="fade-up">
         <nav>
-          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a> <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a> <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a> </div>
+          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mutual Fund</a> <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">SIP</a> <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Goal SIP</a> </div>
         </nav>
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-           <section class="pt-md-11 sec-5 pg-top-80 pg-bottom-100 bg-vt-sec3">
-            <div class="container">
-<div class="row align-items-center">
-  <form id="contactForm" method="post" action=" ">
-  <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
-    <div class="range-slider">
-      <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
-      <input class="range-slider__range font-18 font-wei-400" type="range" value="1000" min="1000" max="100000" step="50">
-       <?php echo '<input class="range-slider__value font-18 font-wei-400" id="initial" type="number" name="initial" value="" required/>'; ?>
-      
-    </div>
-    <div class="range-slider">
-      <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
-      <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
-     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="rate" type="text" name="rate" value="" />' ?>
-    </div>
-     <div class="range-slider">
-      <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">How many years?</span></div>
-      <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
-       <?php echo '<input class="range-slider__value font-18 font-wei-400" id="years" type="number" name="years" value="" min="1" required/>' ?>
-       <?php echo '<input type="hidden" name="n" id="n" value="1"/>' ?>
-    </div>
-    <div class="range-slider">  <input id="btnSubmit" type="button" name="submit" value="Submit" class="btn wo-btn mg-top-15"/> 
-    </div>
-  </div>
-  </form>
-</div>
-</div></section>
-           </div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. </div>
-          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. </div>
+            <div class="row">
+              <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
+                <form id="contactForm" method="post" action=" ">
+                  <div class="range-slider"> <span class="simbol-cal">₹</span>
+                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
+                    <input class="range__text font-18 font-wei-400" id="initial" type="number" name="initial" value="1000" required/>
+                    <?php // echo '<input class="font-18 font-wei-400" id="initial" type="number" name="initial" value="" required/>'; ?>
+                  </div>
+                  <div class="range-slider"> <span class="simbol-cal">%</span>
+                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
+                    <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
+                    <?php echo '<input class="range-slider__value font-18 font-wei-400" id="rate" type="text" name="rate" value="" />' ?> </div>
+                  <div class="range-slider"> <span class="simbol-cal">Yrs</span>
+                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">How many years?</span></div>
+                    <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
+                    <?php echo '<input class="range-slider__value font-18 font-wei-400" id="years" type="number" name="years" value="" min="1" required/>' ?> <?php echo '<input type="hidden" name="n" id="n" value="1"/>' ?> </div>
+                  <div class="range-slider">
+                    <input id="btnSubmit" type="button" name="submit" value="Calculate" class="btn wo-btn mg-top-15"/>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-md-5 col-lg-5">
+                <div class="wo-sip bg-light-black">
+                  <div class="final-res">
+                    <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">
+                      <div class="html-year-val">Monthly SIP Amount</div>
+                    </h5>
+                    <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">
+                      <div class="htm-amo-val">₹00000.00</div>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row">
+              <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
+                <form id="sip-contactForm" method="post" action=" ">
+                  <div class="range-slider"> <span class="simbol-cal">₹</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
+                    <input class="range__text font-18 font-wei-400" id="sip-initial" type="number" name="initial" value="1000" required/>
+                  </div>
+                  <div class="range-slider"> <span class="simbol-cal">%</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
+                    <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
+                    <?php echo '<input class="range-slider__value font-18 font-wei-400" id="sip-rate" type="text" name="rate" value="" />' ?> </div>
+                  <div class="range-slider"> <span class="simbol-cal">M</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Number of compounding periods per year?</span></div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input font-18 font-wei-400" type="radio" checked id="sip-n" name="sip-n" value="12" >
+                      <label class="form-check-label font-18 font-wei-400" for="inlineRadio2">Monthly</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input font-18 font-wei-400" type="radio" id="sip-n" name="sip-n" value="4" >
+                      <label class="form-check-label font-18 font-wei-400" for="inlineRadio2">Quarterly</label>
+                    </div>
+                  </div>
+                  <div class="range-slider"> <span class="simbol-cal">Yrs</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">How many years?</span></div>
+                    <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
+                    <?php echo '<input class="range-slider__value font-18 font-wei-400" id="sip-years" type="number" name="years" value="" min="1" required/>' ?> </div>
+                  <div class="range-slider">
+                    <input id="sip-btnSubmit" type="button" name="submit" value="Calculate" class="btn wo-btn mg-top-15"/>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-md-5 col-lg-5">
+                <div class="wo-sip bg-light-black">
+                  <div class="sip-final-res">
+                    <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">
+                      <div class="html-year-val">Monthly SIP Amount</div>
+                    </h5>
+                    <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">
+                      <div class="htm-amo-val">₹00000.00</div>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="row">
+              <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
+                <form id="goal-contactForm" method="post" action=" ">
+                  <div class="range-slider"> <span class="simbol-cal">₹</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
+                    <input class="range__text font-18 font-wei-400" id="goal-initial" type="number" name="initial" value="1000" required/>
+                    <?php // echo '<input class="font-18 font-wei-400" id="initial" type="number" name="initial" value="" required/>'; ?>
+                  </div>
+                  <div class="range-slider"> <span class="simbol-cal">%</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
+                    <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
+                    <?php echo '<input class="range-slider__value font-18 font-wei-400" id="goal-rate" type="text" name="rate" value="" />' ?> </div>
+                  <div class="range-slider"> <span class="simbol-cal">Yrs</span>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">How many years?</span></div>
+                    <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
+                    <?php echo '<input class="range-slider__value font-18 font-wei-400" id="goal-years" type="number" name="years" value="" min="1" required/>' ?> <?php echo '<input type="hidden" name="n" id="goal-n" value="1"/>' ?> </div>
+                  <div class="range-slider">
+                    <input id="goal-btnSubmit" type="button" name="submit" value="Calculate" class="btn wo-btn mg-top-15"/>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-md-5 col-lg-5">
+                <div class="wo-sip bg-light-black">
+                  <div class="goal-final-res">
+                    <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">
+                      <div class="html-year-val">Monthly SIP Amount</div>
+                    </h5>
+                    <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100">
+                      <div class="htm-amo-val">₹00000.00</div>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-        <div class="col-12 col-md-5 col-lg-5">
-    <div class="wo-sip bg-light-black">
-    <div class="final-res">
-      <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Monthly SIP Amount</div></h5>
-      <h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="htm-amo-val">₹00000.00</div></h5>
-      </div>
-    </div>
-  </div>
     </div>
   </div>
 </section>
@@ -402,4 +481,108 @@ typewriter.typeString('Solution')
     .typeString('Insights')
     .pauseFor(2500)
     .start();
-</script>
+</script> 
+<script type="text/javascript">
+         $=jQuery;    
+         var rangeSlider = function(){
+          var slider = $('.range-slider'),
+              range = $('.range-slider__range'),
+              value = $('.range-slider__value');
+            
+          slider.each(function(){
+         
+            value.each(function(){
+              var value = $(this).prev().attr('value');
+              $(this).val(value);
+            });
+         
+            range.on('input', function(){
+              $(this).next(value).val(this.value);
+            });
+          });
+         };  
+         rangeSlider();
+         document.addEventListener('touchmove', function(event) {
+         event.preventDefault();
+         }, false);
+         function myFunction() {
+         document.getElementById("myDropdown").classList.toggle("show");
+         }
+		 
+	$(document).ready(function() {	
+   //$('#contactForm').submit(function() {
+ $("#btnSubmit").click(function()  {
+        var initial = $("input#initial").val();
+        var rate = $("input#rate").val();
+        var years = $("input#years").val();
+        var nval=$("input#n").val();
+		 var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+		  $.ajax({
+      			url: ajaxurl,
+				data: {
+							'action': 'example_ajax_request',
+							'initial': initial,
+							'rate':rate,
+							'years':years,
+							'nval':nval
+						},
+     // data: {action: example_ajax_request, initial: initial, rate: rate, years: years, nval: nval },
+      success: function(data) {
+		$(".final-res").empty();
+		$(".final-res").html(data);
+       }
+    })
+		
+   }); 
+   
+   
+   //$('#contactForm').submit(function() {
+ $("#sip-btnSubmit").click(function()  {
+        var initial = $("input#sip-initial").val();
+        var rate = $("input#sip-rate").val();
+        var years = $("input#sip-years").val();
+        var nval=$("input[name='sip-n']:checked").val();
+		  var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+		  $.ajax({
+      			url: ajaxurl,
+				data: {
+							'action': 'sip_example_ajax_request',
+							'initial': initial,
+							'rate':rate,
+							'years':years,
+							'nval':nval
+						},
+      success: function(result) {
+		$(".sip-final-res").empty();
+		$(".sip-final-res").html(result);
+       }
+    }) 
+		
+   }); 
+
+$("#goal-btnSubmit").click(function()  {
+        var initial = $("input#goal-initial").val();
+        var rate = $("input#goal-rate").val();
+        var years = $("input#goal-years").val();
+        var nval=$("input#goal-n").val();
+		 var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+		  $.ajax({
+      			url: ajaxurl,
+				data: {
+							'action': 'goal_example_ajax_request',
+							'initial': initial,
+							'rate':rate,
+							'years':years,
+							'nval':nval
+						},
+     // data: {action: example_ajax_request, initial: initial, rate: rate, years: years, nval: nval },
+      success: function(data) {
+		$(".goal-final-res").empty();
+		$(".goal-final-res").html(data);
+       }
+    })
+		
+   }); 
+
+ }); 
+      </script> 

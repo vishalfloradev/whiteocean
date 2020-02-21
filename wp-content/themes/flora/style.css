@@ -52,3 +52,83 @@ with others.
 
 /*	0. CSS Reset
 /* -------------------------------------------------------------------------- */
+
+.range-cad-1 {
+    padding-bottom: 5px !important;
+	    width: 80% !important;
+}
+.range-slider {
+    margin: 25px 0 0 0% !important;
+}
+.range-slider__range {
+    width: calc(80% - (73px)) !important;
+	    background: #b5c0c2 !important;
+}
+.range-slider {
+    float: left;
+}
+.range-slider__value {
+    width: 73px !important;
+    border: 1px solid #00a3be;
+    background: #fff !important;
+    border-radius: 0 !important;
+    color: #000 !important;
+}
+.range__text {
+    width: 80%;
+	border: 1px solid #00a3be;
+	    padding: 2px 6px;
+}
+span.simbol-cal {
+    background: #fff;
+    border: 3px solid #00A3BE;
+    font-size: 30px;
+    border-radius: 50px;
+    float: left;
+    margin: 4px 15px 4px 0px;
+    width: 65px;
+    height: 65px;
+    line-height: 40px;
+    padding: 10px 7px;
+    text-align: center;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #fff !important;
+    background-color: #EA5D39 !important;
+    border-color: #EA5D39 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    font-size: 26px;
+}
+.nav-tabs .nav-link
+{
+	    color: #fff !important;
+    background-color: #00A3BE !important;
+    border-color: #00A3BE !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    font-size: 26px;
+	    margin-left: 2px;
+		    min-width: 200px;
+			    margin-bottom: 1px !important;
+}
+.nav-tabs {
+    border-bottom: none !important;
+    display: inline-flex !important;
+}
+@media screen and (max-width: 640px) and (min-width: 320px)
+{
+	.range__text {
+    width: 70%;
+}
+.range-slider__value {
+    width: 60px !important;
+}
+.range-slider__range {
+    width: calc(65% - (73px)) !important;
+}
+.range-cad-1 {
+	    width: 70% !important;
+}	
+}
