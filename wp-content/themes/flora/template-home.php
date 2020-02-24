@@ -444,10 +444,7 @@ $query->the_post();
   <div class="container">
     <div class="row align-items-center"> <span class="text-center font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase m-auto">our Feed</span>
       <h4 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100 pg-bottom-40">Lorem Ipsum is simply dummy text</h4>
-      <div class="col-12 col-md-4 col-lg-4"><img class="w-100" src="<?php bloginfo('template_url')?>/images/wo-insta-post-1.png" alt=""></div>
-      <div class="col-12 col-md-4 col-lg-4"> <img class="w-100" src="<?php bloginfo('template_url')?>/images/wo-insta-post-2.png" alt=""></div>
-      <div class="col-12 col-md-4 col-lg-4"> <img class="w-100" src="<?php bloginfo('template_url')?>/images/wo-insta-post-3.png" alt=""></div>
-      <?php //echo do_shortcode('[ff id="1"]');?>
+      <?php echo do_shortcode('[ff id="1"]');?>
     </div>
   </div>
 </section>
