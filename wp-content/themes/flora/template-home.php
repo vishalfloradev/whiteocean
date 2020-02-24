@@ -781,3 +781,8 @@ $("#goal-btnSubmit").click(function()  {
  }); 
 
       </script> 
+<script type="application/javascript">
+ function myFunction() {
+         document.getElementById("myDropdown").classList.toggle("show");
+         }
+</script>
