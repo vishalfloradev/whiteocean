@@ -659,7 +659,7 @@ typewriter.typeString('Solution')
     } else {
 		
 	$(".final-res").empty();
-   $('.final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Investment is</div><div class="html-year-val">'+inflation.toFixed(2)+'</div></h5>');
+   $('.final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Investment is</div><div class="htm-amo-val">₹ '+inflation.toFixed(2)+'</div></h5>');
  
 	}
 		/* var ajaxurl = "<?php // echo admin_url('admin-ajax.php'); ?>";
@@ -707,8 +707,8 @@ typewriter.typeString('Solution')
 		
 	$(".sip-final-res").empty();
 	$(".sip-final-resi").empty();
-   $('.sip-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">The future value of your SIP investment is</div><div class="html-year-val">'+result.futureValue.toFixed(2)+'</div></h5>');
-   $('.sip-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="html-year-val">'+result.investment.toFixed(2)+'</div></h5>');
+   $('.sip-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">The future value of your SIP investment is</div><div class="htm-amo-val">₹ '+result.futureValue.toFixed(2)+'</div></h5>');
+   $('.sip-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="htm-amo-val">₹ '+result.investment.toFixed(2)+'</div></h5>');
 	
     }
 		
@@ -751,8 +751,8 @@ $("#goal-btnSubmit").click(function()  {
 		
 	$(".goal-final-res").empty();
 	$(".goal-final-resi").empty();
-    $('.goal-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Monthly SIP Amount is</div><div class="html-year-val">'+formatAmount(result.pmtValue)+'</div></h5>');
-    $('.goal-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="html-year-val">'+formatAmount(result.investment)+'</div></h5>');
+    $('.goal-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Monthly SIP Amount is</div><div class="htm-amo-val">₹ '+formatAmount(result.pmtValue)+'</div></h5>');
+    $('.goal-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="htm-amo-val">₹ '+formatAmount(result.investment)+'</div></h5>');
 	
     }
 		
