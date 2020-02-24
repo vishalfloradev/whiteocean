@@ -262,6 +262,7 @@ get_header();
                       <div class="htm-amo-val">₹00000.00</div>
                     </h5>
                   </div>
+                   <div class="sip-final-resi"></div>
                 </div>
               </div>
             </div>
@@ -298,6 +299,7 @@ get_header();
                       <div class="htm-amo-val">₹00000.00</div>
                     </h5>
                   </div>
+                  <div class="goal-final-resi"></div>
                 </div>
               </div>
             </div>
@@ -461,6 +463,7 @@ $query->the_post();
     </div>
   </div>
 </section>
+
 <?php
 get_footer();
 ?>
@@ -483,6 +486,138 @@ typewriter.typeString('Solution')
     .start();
 </script> 
 <script type="text/javascript">
+  var unittrans1= 'Cr';
+  var unittrans2= 'Lac';
+  function formatAmount(amount) {
+
+    var unit = '';
+    var CRORE = 10000000;
+    var LAC = 100000;
+
+    var lang = document.documentElement.lang.toLowerCase();
+
+    if (parseFloat(amount) > CRORE) {
+      amount = amount / CRORE;
+
+	  unit = unittrans1;
+      /*if (lang === 'hi') {
+        unit = 'à¤•à¤°à¥‹à¥œ';
+      } else {
+        unit = 'Cr';
+      }*/
+    } else if (amount > LAC) {
+      amount = amount / LAC;
+	  
+	  unit = unittrans2;
+      /*if (lang === 'hi') {
+        unit = 'à¤²à¤¾à¤–';
+      } else {
+        unit = 'Lac';
+      }*/
+    }
+    return (amount.toLocaleString('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0
+    }) + ' ' + unit);
+  }
+  
+  // Inflation calculator
+  function inflationCalculator(currentValue, annualInflationRate, period) {
+    if (!($.isNumeric(currentValue) && $.isNumeric(annualInflationRate) && $.isNumeric(period))) {
+      return null;
+    }
+
+    currentValue = parseFloat(currentValue);
+    annualInflationRate = parseFloat(annualInflationRate);
+    period = parseFloat(period);
+
+    var inflatedValue = currentValue * Math.pow((1 + annualInflationRate / 100), period);
+    return inflatedValue;
+  }
+
+  // SIP Calculator
+  function sipCalculator(sipAmount, per, rateOfReturn, investmentDuration) {
+    // Future Value is an internal function
+    function fv(rate, per, nper, pmt, pv) {
+      if (pmt == 0 || nper == 0 || per == 0) {
+        return null;
+      }
+
+      rate = rate / (per * 100);
+
+      var futureValue;
+
+      if (rate === 0) {
+        futureValue = -(pv + (pmt * nper));
+      } else {
+        var x = Math.pow(1 + rate, nper);
+        futureValue = -(-pmt + x * pmt + rate * x * pv) / rate;
+      }
+
+      return futureValue;
+    }
+
+    if (!($.isNumeric(sipAmount) && $.isNumeric(rateOfReturn) && $.isNumeric(investmentDuration))) {
+      return null;
+    }
+
+    sipAmount = parseFloat(sipAmount);
+    rateOfReturn = parseFloat(rateOfReturn);
+    investmentDuration = parseFloat(investmentDuration);
+
+    var nper = per * investmentDuration;
+    var futureValue = fv(rateOfReturn, per, nper, sipAmount * -1, 0);
+    var investment = sipAmount * nper;
+
+    return {
+      futureValue: futureValue,
+      investment: investment,
+      earnings: (futureValue - investment)
+    };
+  }
+   function goalSipCalculator(goalAmount, rateOfReturn, investmentDuration) {
+    // PMT is an internal function
+    function pmt(rate, per, nper, pv, fv) {
+      if (fv == 0) {
+        return null;
+      }
+
+      rate = rate / (per * 100);
+
+      if (rate == 0) {
+        pmtValue = -(fv + pv) / nper;
+      } else {
+        var x = Math.pow(1 + rate, nper);
+        fv = fv + x * pv;
+        pmtValue = -((rate * fv) / (-1 + x));
+      }
+
+      return pmtValue;
+    }
+
+    if (!($.isNumeric(goalAmount) && $.isNumeric(rateOfReturn) && $.isNumeric(investmentDuration))) {
+      return null;
+    }
+
+    goalAmount = parseFloat(goalAmount);
+    rateOfReturn = parseFloat(rateOfReturn);
+    investmentDuration = parseFloat(investmentDuration);
+
+    // Assuming monthly SIP investment
+    var per = 12;
+    var nper = per * investmentDuration;
+
+    var pmtValue = pmt(rateOfReturn, per, nper, 0, goalAmount) * -1;
+    var investment = pmtValue * nper;
+
+    return {
+      pmtValue: pmtValue,
+      investment: investment,
+      earnings: (goalAmount - investment)
+    };
+  }
+
          $=jQuery;    
          var rangeSlider = function(){
           var slider = $('.range-slider'),
@@ -512,11 +647,23 @@ typewriter.typeString('Solution')
 	$(document).ready(function() {	
    //$('#contactForm').submit(function() {
  $("#btnSubmit").click(function()  {
-        var initial = $("input#initial").val();
-        var rate = $("input#rate").val();
-        var years = $("input#years").val();
-        var nval=$("input#n").val();
-		 var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+		
+	    var currentValue = $("input#initial").val();
+    var inflationRate = $("input#rate").val();
+    var timePeriod =$("input#years").val();
+
+    var inflation  = inflationCalculator(currentValue, inflationRate, timePeriod);	
+		   
+ if (inflation  === null) {
+		$(".final-res").empty();
+      $('.final-res').html('<p class="result-error">Error! Ensure all the values are valid numbers.</p>');
+    } else {
+		
+	$(".final-res").empty();
+   $('.final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Investment is</div><div class="html-year-val">'+inflation.toFixed(2)+'</div></h5>');
+ 
+	}
+		/* var ajaxurl = "<?php // echo admin_url('admin-ajax.php'); ?>";
 		  $.ajax({
       			url: ajaxurl,
 				data: {
@@ -531,7 +678,7 @@ typewriter.typeString('Solution')
 		$(".final-res").empty();
 		$(".final-res").html(data);
        }
-    })
+    }) */
 		
    }); 
    
@@ -542,7 +689,31 @@ typewriter.typeString('Solution')
         var rate = $("input#sip-rate").val();
         var years = $("input#sip-years").val();
         var nval=$("input[name='sip-n']:checked").val();
-		  var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+		
+    var sipAmount = $("input#sip-initial").val();
+    var sipFrequency = $("input[name='sip-n']:checked").val();
+    var rateOfReturn = $("input#sip-rate").val();
+    var investmentDuration = $("input#sip-years").val();
+    var annualInflationRate = 0;
+    var per= sipFrequency;
+    
+
+    var result = sipCalculator(sipAmount, per, (rateOfReturn - annualInflationRate), investmentDuration);
+   
+ if (result === null) {
+		$(".sip-final-res").empty();
+		$(".sip-final-resi").empty();
+      $('.sip-final-res').html('<p class="result-error">Error! Ensure all the values are valid numbers.</p>');
+    } else {
+		
+	$(".sip-final-res").empty();
+	$(".sip-final-resi").empty();
+   $('.sip-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">The future value of your SIP investment is</div><div class="html-year-val">'+result.futureValue.toFixed(2)+'</div></h5>');
+   $('.sip-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="html-year-val">'+result.investment.toFixed(2)+'</div></h5>');
+	
+    }
+		
+		/*  var ajaxurl = "<?php //echo admin_url('admin-ajax.php'); ?>";
 		  $.ajax({
       			url: ajaxurl,
 				data: {
@@ -556,7 +727,7 @@ typewriter.typeString('Solution')
 		$(".sip-final-res").empty();
 		$(".sip-final-res").html(result);
        }
-    }) 
+    })  */
 		
    }); 
 
@@ -565,7 +736,31 @@ $("#goal-btnSubmit").click(function()  {
         var rate = $("input#goal-rate").val();
         var years = $("input#goal-years").val();
         var nval=$("input#goal-n").val();
-		 var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+		
+		
+	var goalAmount = parseFloat($('input#goal-initial').val().replace(/,/g, ''));
+    var rateOfReturn = rate
+    var investmentDuration = years;
+    var annualInflationRate = 0;
+
+    var result = goalSipCalculator(goalAmount, (rateOfReturn - annualInflationRate), investmentDuration);
+	
+    if (result === null) {
+		$(".goal-final-res").empty();
+      $('.goal-final-res').html('<p class="result-error">Error! Ensure all the values are valid numbers.</p>');
+    } else {
+		
+	$(".goal-final-res").empty();
+	$(".goal-final-resi").empty();
+    $('.goal-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Monthly SIP Amount is</div><div class="html-year-val">'+formatAmount(result.pmtValue)+'</div></h5>');
+    $('.goal-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="html-year-val">'+formatAmount(result.investment)+'</div></h5>');
+	
+    }
+		
+	//	var result = goalSipCalculator(goalAmount, (rateOfReturn - annualInflationRate), investmentDuration); 
+		
+	/*	
+	 var ajaxurl = "<?php // echo admin_url('admin-ajax.php'); ?>";
 		  $.ajax({
       			url: ajaxurl,
 				data: {
@@ -580,9 +775,10 @@ $("#goal-btnSubmit").click(function()  {
 		$(".goal-final-res").empty();
 		$(".goal-final-res").html(data);
        }
-    })
+    }) */
 		
    }); 
 
  }); 
+
       </script> 
