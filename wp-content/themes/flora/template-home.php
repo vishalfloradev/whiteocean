@@ -751,8 +751,8 @@ $("#goal-btnSubmit").click(function()  {
 		
 	$(".goal-final-res").empty();
 	$(".goal-final-resi").empty();
-    $('.goal-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Monthly SIP Amount is</div><div class="htm-amo-val">₹ '+formatAmount(result.pmtValue)+'</div></h5>');
-    $('.goal-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="htm-amo-val">₹ '+formatAmount(result.investment)+'</div></h5>');
+    $('.goal-final-res').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Monthly SIP Amount is</div><div class="htm-amo-val">'+formatAmount(result.pmtValue)+'</div></h5>');
+    $('.goal-final-resi').html('<h5 class="display-3 text-center font-30 font-wei-300 bl-clo line-height-40 pg-top-5 w-100"><div class="html-year-val">Your Total Investment is</div><div class="htm-amo-val">'+formatAmount(result.investment)+'</div></h5>');
 	
     }
 		
