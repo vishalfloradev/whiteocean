@@ -63,11 +63,10 @@ get_header();
     </div>
     <?php $i++; endwhile; ?>
     <?php endif; wp_reset_postdata();?>
-    <div class="clearfix"></div>
   </div>
 </div>
 <!-- Solution Section -->
-
+<div class="clearfix"></div>
 <section class="pg-top-40 pg-bottom-120 pt-md-11 sec-3 bg-vt-sec1">
   <div class="container">
     <div class="row align-items-center">
@@ -138,9 +137,9 @@ get_header();
 
                                             ?>
         <span class="font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase"><?php echo $solutions_title;?></span>
-        <h2 class="display-3 text-center text-md-left font-30 font-wei-300 bl-clo line-height-40 pg-top-5"> <?php echo $solutions_sub_title;?></h2>
+        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5"> <?php echo $solutions_sub_title;?></h2>
         <img src="<?php echo esc_url($solution_image['url']);?>" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 aos-init aos-animate" alt="<?php echo $solution_image['alt'];?>" data-aos="fade-up" data-aos-delay="100">
-        <p><?php echo $solutions_content;?> </p>
+        <p class="pg-top-10 bl-clo text-md-left mb-6 mb-lg-8 bl-clo font-18 font-wei-300 line-height-30"><?php echo $solutions_content;?> </p>
         <div class="text-center text-md-left"> <a class="btn wo-btn mg-top-15" href="<?php echo esc_url($solutions_button_link);?>"><?php echo $solutions_button;?></a> </div>
       </div>
       <?php $i++; endwhile; ?>
@@ -158,9 +157,9 @@ get_header();
     <div class="row align-items-center">
       <div class="col-12 col-md-7 col-lg-7 order-md-1 aos-init aos-animate" data-aos="fade-up"> <span class="font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase"><?php echo get_sub_field('about_title');?></span> 
         <!-- Heading -->
-        <h2 class="display-3 text-center text-md-left font-30 font-wei-300 bl-clo line-height-40 pg-top-5"><?php echo get_sub_field('about_sub_title');?>.</h2>
+        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5"><?php echo get_sub_field('about_sub_title');?>.</h2>
         <!-- Text -->
-        <p class="pg-top-10 bl-clo text-md-left mb-6 mb-lg-8 bl-clo font-18 font-wei-400 line-height-30"> <?php echo get_sub_field('about_content');?> </p>
+        <p class="pg-top-10 bl-clo text-md-left mb-6 mb-lg-8 bl-clo font-18 font-wei-300 line-height-30"> <?php echo get_sub_field('about_content');?> </p>
         <!-- Buttons -->
         <div class="text-center text-md-left"> <a href="<?php echo get_sub_field('about_button_link');?>" class="btn wo-btn mg-top-15"><?php echo get_sub_field('about_button');?></a> </div>
       </div>
