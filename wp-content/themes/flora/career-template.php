@@ -62,7 +62,8 @@ $main_image=$career_top_content['image'];
         <p class="text-md-left mb-6 mb-lg-8 blue-light-clo font-18 font-wei-300 line-height-30">Posted on : <?php the_sub_field('date') ?></p>
         <div class="text-center text-md-left">
           <label class="btn-bs-file btn wo-btn">Submit Resume
-           <?php echo do_shortcode('[contact-form-7 id="247" title="Resume"]'); ?>
+          <input type="file" />
+           <?php //echo do_shortcode('[contact-form-7 id="247" title="Resume"]'); ?>
           </label>
         </div>
       </div>
