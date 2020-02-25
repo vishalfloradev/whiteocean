@@ -62,7 +62,7 @@ $main_image=$career_top_content['image'];
         <p class="text-md-left mb-6 mb-lg-8 blue-light-clo font-18 font-wei-300 line-height-30">Posted on : <?php the_sub_field('date') ?></p>
         <div class="text-center text-md-left">
           <label class="btn-bs-file btn wo-btn">Submit Resume
-            <input type="file">
+           <?php echo do_shortcode('[contact-form-7 id="247" title="Resume"]'); ?>
           </label>
         </div>
       </div>
@@ -75,11 +75,12 @@ $main_image=$career_top_content['image'];
           <div class="accordion" id="accordionExample">
             <div class="card">
               <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"><i class="fa fa-plus"></i> Responsibilities</button>
+          
+                 <h2 class="mb-0">
+                  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus"></i> Responsibilities</button>
                 </h2>
               </div>
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                 <?php the_sub_field('responsibilities') ?>
                 </div>
@@ -88,10 +89,10 @@ $main_image=$career_top_content['image'];
             <div class="card">
               <div class="card-header" id="headingTwo">
                 <h2 class="mb-0">
-                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"><i class="fa fa-plus"></i> Qualifications</button>
+                   <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus"></i> Qualifications</button>
                 </h2>
               </div>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample" style="">
+              <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                  <?php the_sub_field('qualifications') ?>
                 </div>
@@ -100,10 +101,10 @@ $main_image=$career_top_content['image'];
             <div class="card">
               <div class="card-header" id="headingThree">
                 <h2 class="mb-0">
-                  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"><i class="fa fa-minus"></i> Requirement</button>
+                  <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"><i class="fa fa-plus"></i> Requirement</button>
                 </h2>
               </div>
-              <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample" style="">
+             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
         <?php the_sub_field('requirement') ?>
                 </div>
@@ -176,6 +177,44 @@ $main_image=$career_top_content['image'];
 </section>
 <?php
 get_footer();
+?><script type="text/javascript">
+	function myFunction() {
+		document.getElementById("myDropdown").classList.toggle("show")
+	}
+	$ = jQuery, $(function() {
+		$("#main_navbar").bootnavbar()
+	});
+	var rangeSlider = function() {
+		var n = $(".range-slider"),
+			e = $(".range-slider__range"),
+			t = $(".range-slider__value");
+		n.each(function() {
+			t.each(function() {
+				var n = $(this).prev().attr("value");
+				$(this).html(n)
+			}), e.on("input", function() {
+				$(this).next(t).html(this.value)
+			})
+		})
+	};
+	rangeSlider(), document.addEventListener("touchmove", function(n) {
+		n.preventDefault()
+	}, !1), $(window).scroll(function() {
+		$(this).scrollTop() >= 50 ? $("#return-to-top").fadeIn(200) : $("#return-to-top").fadeOut(200)
+	}), $("#return-to-top").click(function() {
+		$("body,html").animate({
+			scrollTop: 0
+		}, 500)
+	}), $(document).ready(function() {
+		$(".collapse.show").each(function() {
+			$(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus")
+		}), $(".collapse").on("show.bs.collapse", function() {
+			$(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus")
+		}).on("hide.bs.collapse", function() {
+			$(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus")
+		})
+	});
+	</script>
 
 
 
