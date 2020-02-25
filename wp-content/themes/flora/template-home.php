@@ -18,7 +18,7 @@ get_header();
       <div class="carousel-inner">
         <div class="carousel-item active"> <img class="d-block w-100 dek-banner-1"  alt="homebanner" src="<?php echo get_field('banner');?>" data-holder-rendered="true"> <img class="mobile-banner-1" src="<?php echo get_field('mobile_banner');?>" alt="">
           <div class="carousel-caption d-md-block">
-            <h1 class="font-50 font-wei-300 line-height-75">Your
+            <h1 class="font-50 font-wei-400 line-height-75">Your
               <div id="app" class="bg-saffron pd-3" style="display:inline;"></div>
               Partners <br>
               Today &amp; Tomorrow. </h1>
@@ -188,16 +188,16 @@ get_header();
               <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
                 <form id="contactForm" method="post" action=" ">
                   <div class="range-slider"> <span class="simbol-cal">₹</span>
-                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
+                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Value of Current Expenses</span> </div>
                     <input class="range__text font-18 font-wei-400" id="initial" type="number" name="initial" value="1000" required/>
                     <?php // echo '<input class="font-18 font-wei-400" id="initial" type="number" name="initial" value="" required/>'; ?>
                   </div>
                   <div class="range-slider"> <span class="simbol-cal">%</span>
-                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
+                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Annual Inflation Rate</span> </div>
                     <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
                     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="rate" type="text" name="rate" value="" />' ?> </div>
                   <div class="range-slider"> <span class="simbol-cal">Yrs</span>
-                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">How many years?</span></div>
+                    <div class="range-cad-1"><span class="font-18 font-wei-400 pull-left">Time Period</span></div>
                     <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
                     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="years" type="number" name="years" value="" min="1" required/>' ?> <?php echo '<input type="hidden" name="n" id="n" value="1"/>' ?> </div>
                   <div class="range-slider">
@@ -224,11 +224,11 @@ get_header();
               <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
                 <form id="sip-contactForm" method="post" action=" ">
                   <div class="range-slider"> <span class="simbol-cal">₹</span>
-                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">SIP Amount</span> </div>
                     <input class="range__text font-18 font-wei-400" id="sip-initial" type="number" name="initial" value="1000" required/>
                   </div>
                   <div class="range-slider"> <span class="simbol-cal">%</span>
-                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Expected Rate of Return (p.a.)</span> </div>
                     <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
                     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="sip-rate" type="text" name="rate" value="" />' ?> </div>
                   <div class="range-slider"> <span class="simbol-cal">M</span>
@@ -243,7 +243,7 @@ get_header();
                     </div>
                   </div>
                   <div class="range-slider"> <span class="simbol-cal">Yrs</span>
-                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">How many years?</span></div>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Investment Duration</span></div>
                     <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
                     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="sip-years" type="number" name="years" value="" min="1" required/>' ?> </div>
                   <div class="range-slider">
@@ -271,16 +271,16 @@ get_header();
               <div class="col-12 col-md-7 col-lg-7 aos-init aos-animate pg-top-40" data-aos="fade-up">
                 <form id="goal-contactForm" method="post" action=" ">
                   <div class="range-slider"> <span class="simbol-cal">₹</span>
-                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Initial amount (contribution) :</span> </div>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Goal Amount</span> </div>
                     <input class="range__text font-18 font-wei-400" id="goal-initial" type="number" name="initial" value="1000" required/>
                     <?php // echo '<input class="font-18 font-wei-400" id="initial" type="number" name="initial" value="" required/>'; ?>
                   </div>
                   <div class="range-slider"> <span class="simbol-cal">%</span>
-                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Annual interest rate :</span> </div>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Expected Rate of Return (p.a.)</span> </div>
                     <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="0" max="20">
                     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="goal-rate" type="text" name="rate" value="" />' ?> </div>
                   <div class="range-slider"> <span class="simbol-cal">Yrs</span>
-                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">How many years?</span></div>
+                    <div class="range-cad-1"> <span class="font-18 font-wei-400 pull-left">Investment Duration</span></div>
                     <input class="range-slider__range font-18 font-wei-400" type="range" value="1" min="1" max="30">
                     <?php echo '<input class="range-slider__value font-18 font-wei-400" id="goal-years" type="number" name="years" value="" min="1" required/>' ?> <?php echo '<input type="hidden" name="n" id="goal-n" value="1"/>' ?> </div>
                   <div class="range-slider">
@@ -407,7 +407,7 @@ $query->the_post();
             <?php the_post_thumbnail('full');?>
             <figcaption>
               <h2 class="font-25 font-wei-400"><?php echo get_the_title();?></h2>
-              <p><?php echo substr(get_the_content(),0,70);?></p>
+              <p><?php echo strip_tags(substr(get_the_content(),0,70));?></p>
               <a class="saffron-clo" href="<?php echo get_permalink();?>">READ MORE</a>
               <div class="social-area blog-ico">
                 <ul>

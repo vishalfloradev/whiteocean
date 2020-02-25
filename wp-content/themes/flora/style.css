@@ -120,7 +120,9 @@ span.simbol-cal {
 .ff-stream {
     width: 100%;
 }
-
+.btn.wo-btn {
+    margin-bottom: 20px;
+}
 @media screen and (max-width: 640px) and (min-width: 320px)
 {
 	.range__text {
