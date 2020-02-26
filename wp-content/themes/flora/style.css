@@ -128,6 +128,45 @@ span.uploaded_image {
     width: 100%;
     float: left;
 }
+.navbar-nav {
+list-style:none inside;
+margin:0;
+padding:0;
+text-align:center;
+}
+.navbar-nav li {
+display:block;
+position:relative;
+line-height:35px;
+}
+.navbar-nav li a {
+display:block;
+padding:0;
+text-decoration:none;
+}
+.navbar-nav li li a {font-size:80%;} /* smaller font size for sub menu items */
+
+.navbar-nav ul {
+position: absolute;
+    padding: 0;
+    left: 0;
+    display: none;
+    width: 250px;
+    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+	background:#fff;
+}
+.navbar-nav li:hover ul ul {display:none;} /* hides sub-sublists */
+.navbar-nav li:hover ul {display:block;} /* shows sublist on hover */
+.navbar-nav li li:hover ul {
+display:block; /* shows sub-sublist on hover */
+margin-left:200px; /* this should be the same width as the parent list item */
+margin-top:-35px; /* aligns top of sub menu with top of list item */
+}
+.navbar-nav li li:hover {
+    background: #00A3BE;
+}
+
 @media screen and (max-width: 640px) and (min-width: 320px)
 {
 	.range__text {

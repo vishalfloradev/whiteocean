@@ -125,7 +125,6 @@ nav#main_navbar{padding-right:0;padding-top:0;padding-bottom:0;}
 
     display: block;
     clear: both;
-    overflow: hidden;
     z-index: 999999999;
 
 }
@@ -138,7 +137,7 @@ nav#main_navbar{padding-right:0;padding-top:0;padding-bottom:0;}
 .dropdown-menu > li a:hover, .dropdown-menu > li.show{background:#007bff;color:white;}
 .dropdown-menu > li.show > a{color:white;}
 .navbar .navbar-brand{margin-right:5rem;}
-.header .navbar-expand-lg .navbar-nav .nav-link{padding-right:1rem;padding-left:1rem;font-size:16px;font-weight:400;text-transform:uppercase;color:#000 !important;}
+.header .navbar-expand-lg .navbar-nav .nav-link{padding-right:1rem;padding-left:1rem;font-size:16px;font-weight:400;text-transform:uppercase;color:#000;}
 .navbar-brand img{width:242px;}
 .social-area{float:right;padding:40px;position:relative;right:0;top:0;}
 .social-area ul{padding:0;list-style-type:none;float:right;margin:0;}
