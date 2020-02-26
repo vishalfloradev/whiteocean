@@ -11,8 +11,8 @@ if($_FILES["file"]["name"] != '')
  
  */
  
-   $from_email         = 'nijal.flora@gmail.com'; //from mail, sender email addrress 
-    $recipient_email    = 'vishalfloradev@gmail.com'; //recipient email addrress 
+   $from_email         = 'vishalfloradev@gmail.com'; //from mail, sender email addrress 
+    $recipient_email    = 'nijal.flora@gmail.com'; //recipient email addrress 
       
     //Load POST data from HTML form 
     $sender_name    = 'White Ocean'; 
