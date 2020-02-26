@@ -216,7 +216,7 @@ get_footer();
 		})
 	});
 	
-	$(document).ready(function(){
+$(document).ready(function(){
  $(document).on('change', '#file', function(){
   var name = document.getElementById("file").files[0].name;
   var form_data = new FormData();

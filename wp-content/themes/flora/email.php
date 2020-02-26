@@ -22,7 +22,7 @@ if($_FILES["file"]["name"] != '')
       
     //Get uploaded file data using $_FILES array 
     $tmp_name    = $_FILES['file']['tmp_name']; // get the temporary file name of the file on the server 
-    $file_name   = $_FILES['file']['name'];  // get the name of the file 
+    $name        = $_FILES['file']['name'];  // get the name of the file 
     $size        = $_FILES['file']['size'];  // get size of the file for size validation 
     $type        = $_FILES['file']['type'];  // get type of the file 
     $error       = $_FILES['file']['error']; // get the error (if any) 
@@ -57,8 +57,8 @@ if($_FILES["file"]["name"] != '')
           
     //attachment 
     $body .= "--$boundary\r\n"; 
-    $body .="Content-Type: $file_type; name=".$file_name."\r\n"; 
-    $body .="Content-Disposition: attachment; filename=".$file_name."\r\n"; 
+    $body .="Content-Type: $type; name=".$name."\r\n"; 
+    $body .="Content-Disposition: attachment; filename=".$name."\r\n"; 
     $body .="Content-Transfer-Encoding: base64\r\n"; 
     $body .="X-Attachment-Id: ".rand(1000, 99999)."\r\n\r\n";  
     $body .= $encoded_content; // Attaching the encoded file with email 
@@ -68,7 +68,7 @@ if($_FILES["file"]["name"] != '')
     if($sentMailResult )  
     { 
        echo "File Sent Successfully."; 
-       unlink($file_name); // delete the file after attachment sent. 
+       unlink($name); // delete the file after attachment sent. 
     } 
     else
     { 
