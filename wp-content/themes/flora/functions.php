@@ -438,3 +438,11 @@ function resume_example_ajax_request() {
 }
 add_action( 'wp_ajax_resume_example_ajax_request', 'resume_example_ajax_request' );
 add_action( 'wp_ajax_resume_example_ajax_request', 'resume_example_ajax_request' );
+
+add_filter( 'nav_menu_link_attributes', function ( $atts, $item, $args ) {
+    if ( 'target-foobox' === $item->classes[0] ) {
+        $atts['class'] = 'nav-link dropdown-toggle';
+    }
+
+    return $atts;
+}, 10, 3 );
