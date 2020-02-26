@@ -12,13 +12,16 @@
 
 get_header(); ?>
 <!-- Banner Section -->
-
 <div class="wo-breadcrumbs mg-bottom-35">
   <ol class="breadcrumb breadcrumbs-title">
     <li class="breadcrumb-item active"><?php echo get_the_title();?></li>
   </ol>
 </div>
 <?php
+$post_type = get_post_type();
+
+if($post_type == 'solutions')
+{
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
@@ -48,32 +51,37 @@ get_header(); ?>
 <section class="pt-md-11 bg-vt-sec3 pg-top-100 pg-bottom-100 mg-top-50 mg-bottom-50 solu-2">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-12 col-md-6 col-lg-12"> <span class="font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase"><?php the_field('solution_usp_sub_title', 'option');?></span> 
+      <div class="col-12 col-md-6 col-lg-12"> <span class="font-wei-blod font-16 wt-clo bg-saffron pd-2 text-uppercase">
+        <?php the_field('solution_usp_sub_title', 'option');?>
+        </span> 
         <!-- Heading -->
-        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5 w-100"><?php the_field('solution_usp_title', 'option');?></h2>
+        <h2 class="display-3 text-center text-md-left font-30 font-wei-400 bl-clo line-height-40 pg-top-5 w-100">
+          <?php the_field('solution_usp_title', 'option');?>
+        </h2>
         <div class="row">
-         <?php if( have_rows('solution_usp', 'option') ): ?>
+          <?php if( have_rows('solution_usp', 'option') ): ?>
           <?php $i=0; while( have_rows('solution_usp', 'option') ): the_row(); ?>
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="box-part text-left pg-top-20 pg-bottom-20 mg-top-30 mg-bottom-0"> <img class="pg-bottom-20" src="<?php the_sub_field('image'); ?>" alt="<?php the_sub_field('name');?>" alt="">
-              <div class="shadow-box">
-            
-              <img class="pg-bottom-20 text-right" src="<?php echo get_template_directory_uri(); ?>/images/box-shadow.png" alt="<?php the_sub_field('name');?>"></div>
+              <div class="shadow-box"> <img class="pg-bottom-20 text-right" src="<?php echo get_template_directory_uri(); ?>/images/box-shadow.png" alt="<?php the_sub_field('name');?>"></div>
               <div class="title">
-                <h3 class="mt-0 bl-clo font-25 font-wei-400 line-height-35 pg-top-10"> <?php the_sub_field('name');?></h3>
+                <h3 class="mt-0 bl-clo font-25 font-wei-400 line-height-35 pg-top-10">
+                  <?php the_sub_field('name');?>
+                </h3>
               </div>
               <div class="text">
-                <p class="text-left pg-top-10 bl-clo mb-6 mb-lg-8 bl-clo font-18 font-wei-400 line-height-30"> <?php the_sub_field('content');?></p>
+                <p class="text-left pg-top-10 bl-clo mb-6 mb-lg-8 bl-clo font-18 font-wei-400 line-height-30">
+                  <?php the_sub_field('content');?>
+                </p>
               </div>
+            </div>
           </div>
-          </div>
-           <?php $i++; endwhile;
+          <?php $i++; endwhile;
 		   wp_reset_postdata(); ?>
           <?php endif; ?>
-        
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </section>
 <section class="pg-top-0 pt-md-11 about-bg-sec2 solu-3">
@@ -92,6 +100,18 @@ the_content();
     </div>
   </div>
 </section>
+<?php }
+else
+{ while ( have_posts() ) :
+				the_post();
+				the_title();
+				the_content();
+	?>
+<?php 
+	endwhile; // End of the loop.
+			wp_reset_postdata();
+}
+?>
 <section class="pt-md-11 sec-4 about-bg-sec2">
   <div class="container">
   <div class="row align-items-center">
@@ -146,4 +166,5 @@ the_content();
 </section>
 <?php
 get_footer();
+
 

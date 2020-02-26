@@ -431,3 +431,10 @@ $n=$_REQUEST['nval'];
 }
 add_action( 'wp_ajax_goal_example_ajax_request', 'goal_example_ajax_request' );
 add_action( 'wp_ajax_nopriv_goal_example_ajax_request', 'goal_example_ajax_request' );
+
+
+function resume_example_ajax_request() {
+	echo "hiii";
+}
+add_action( 'wp_ajax_resume_example_ajax_request', 'resume_example_ajax_request' );
+add_action( 'wp_ajax_resume_example_ajax_request', 'resume_example_ajax_request' );
