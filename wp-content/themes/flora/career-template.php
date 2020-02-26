@@ -65,7 +65,7 @@ $main_image=$career_top_content['image'];
    <br />
    
         </label>
-        <span id="uploaded_image<?php echo $i; ?>"></span>
+        <span id="uploaded_image<?php echo $i; ?>" class="uploaded_image"></span>
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-6 aos-init aos-animate" data-aos="fade-up">

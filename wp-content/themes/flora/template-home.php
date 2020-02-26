@@ -630,6 +630,9 @@ typewriter.typeString('Solution')
             range.on('input', function(){
               $(this).next(value).val(this.value);
             });
+			 value.on('input', function(){
+              $(this).prev(value).val(this.value);
+            });
           });
          };  
          rangeSlider();
