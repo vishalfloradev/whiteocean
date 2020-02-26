@@ -80,6 +80,13 @@
 
 	<style>.footer-copyright { width:100%}</style>
 		<?php wp_footer(); ?>
-
+<script type="application/javascript">
+jQuery('#myFunction').click(function(){
+         document.getElementById("myDropdownd").classList.toggle("show");
+});	 
+jQuery('#myFunctionm').click(function(){
+         document.getElementById("myDropdownm").classList.toggle("show");
+});	
+</script>
 	</body>
 </html>

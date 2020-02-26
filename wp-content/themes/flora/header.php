@@ -39,7 +39,7 @@
     <ul>
       <li>
         <div class="dropdowncustom">
-          <button onclick="myFunction()" class="dropbtn"> <svg fill="#FFFFFF" width="18pt" height="18pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+          <button id="myFunctionm" class="dropbtn"> <svg fill="#FFFFFF" width="18pt" height="18pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
           <g>
             <path d="M508.874,478.708L360.142,329.976c28.21-34.827,45.191-79.103,45.191-127.309c0-111.75-90.917-202.667-202.667-202.667
                                           S0,90.917,0,202.667s90.917,202.667,202.667,202.667c48.206,0,92.482-16.982,127.309-45.191l148.732,148.732
@@ -47,8 +47,13 @@
                                           c-88.229,0-160-71.771-160-160s71.771-160,160-160s160,71.771,160,160S290.896,362.667,202.667,362.667z"></path>
           </g>
           </svg> </button>
-          <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <div id="myDropdownm" class="dropdown-content">
+            <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+              <input type="search" class="search-field"
+            placeholder="<?php echo esc_attr_x( 'Search …', 'placeholder' ) ?>"
+            value="<?php echo get_search_query() ?>" name="s"
+            title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>"  id="myInput" />
+</form>
           </div>
         </div>
       </li>
@@ -107,7 +112,7 @@
         <ul>
           <li>
             <div class="dropdowncustom">
-              <button onclick="myFunction()" class="dropbtn"> <svg fill="#FFFFFF" width="18pt" height="18pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+              <button id="myFunction" class="dropbtn"> <svg fill="#FFFFFF" width="18pt" height="18pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
               <g>
                 <path d="M508.874,478.708L360.142,329.976c28.21-34.827,45.191-79.103,45.191-127.309c0-111.75-90.917-202.667-202.667-202.667
                                           S0,90.917,0,202.667s90.917,202.667,202.667,202.667c48.206,0,92.482-16.982,127.309-45.191l148.732,148.732
@@ -115,8 +120,13 @@
                                           c-88.229,0-160-71.771-160-160s71.771-160,160-160s160,71.771,160,160S290.896,362.667,202.667,362.667z"></path>
               </g>
               </svg> </button>
-              <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+              <div id="myDropdownd" class="dropdown-content">
+              <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
+              <input type="search" class="search-field"
+            placeholder="<?php echo esc_attr_x( 'Search …', 'placeholder' ) ?>"
+            value="<?php echo get_search_query() ?>" name="s"
+            title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>"  id="myInput" />
+</form>
               </div>
             </div>
           </li>
