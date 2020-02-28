@@ -102,14 +102,26 @@ the_content();
 </section>
 <?php }
 else
-{ while ( have_posts() ) :
+{
+    ?>
+<section class="pg-top-20 pt-md-11 about-bg-sec2 solu-1">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-12 col-lg-12">
+    <?php
+    while ( have_posts() ) :
 				the_post();
-				the_title();
 				the_content();
 	?>
 <?php 
-	endwhile; // End of the loop.
+	endwhile; 
 			wp_reset_postdata();
+			?>
+			</div>
+			</div>
+			</div>
+			</section>
+			<?php
 }
 ?>
 <section class="pt-md-11 sec-4 about-bg-sec2">

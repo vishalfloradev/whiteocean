@@ -182,3 +182,57 @@ margin-top:-35px; /* aligns top of sub menu with top of list item */
 	    width: 70% !important;
 }	
 }
+/*contact form 7 file uploader design*/
+.codedropz-upload-handler h3 ,.codedropz-upload-inner > span {
+    display: none;
+}
+
+.codedropz-upload-inner .codedropz-btn-wrap a.cd-upload-btn::before {
+    content: "Submit Resume";
+    font-size: 21px;
+    color: white;
+}
+
+.codedropz-upload-inner .codedropz-btn-wrap a.cd-upload-btn {
+    
+    font-size: 0;
+}
+
+.codedropz-upload-handler { border:0 !Important;}
+
+.wpcf7-submit {
+    border: none;
+    padding: 10px!important;
+}
+.codedropz-upload-container,.codedropz-upload-handler{ padding:0 !Important; margin:0 !Important;}
+
+}
+.dnd-upload-status .dnd-upload-details span.has-error {
+  
+    font-size: 11px;
+}
+.dnd-upload-status .dnd-upload-details .dnd-progress-bar { height:13px !important;}
+
+.dnd-upload-status .dnd-upload-details .name { color:white; font-size:11px;}
+.dnd-upload-status .dnd-upload-details .remove-file{ color:white; right: -19px;}
+.dnd-upload-status .dnd-upload-details span.has-error { font-size:11px;}
+
+.wpcf7-form p {
+    display: inline-block;
+    margin: 0;
+}
+#wpcf7-f250-o1 .wpcf7-submit, #wpcf7-f250-o2 .wpcf7-submit{
+    border: none;
+    padding: 11px 32px!important;
+    background: #EA5D39;
+    font-size: 21px;
+    color: white;
+    text-transform: uppercase;
+}
+#wpcf7-f250-o1 .wpcf7-submit:hover, #wpcf7-f250-o2 .wpcf7-submit:hover{
+    background: #00A3BE;
+}
+span.wpcf7-not-valid-tip {
+    color: #000;
+    font-size: 11px;
+}
